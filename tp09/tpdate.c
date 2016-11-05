@@ -46,7 +46,7 @@ int main(){
       return -1;
   }
   if (jmois == jour) { //Si le jour donnée est le dernier jour du mois
-    moisplus =+ 1;
+    moisplus = mois+1;
     jourplus = 1;
     if (mois == 12) { //Si le mois donné est décembre, et qu'il faut le changer
       moisplus = 1; //Le mois en sortie sera Janvier
