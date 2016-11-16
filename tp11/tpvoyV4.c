@@ -7,7 +7,7 @@ Programme produit le 14/11/16 par Gabriel LEBIS
 #include <stdlib.h>
 #define LM 25
 
-char *voyelles(const char *chaine1){
+char *voyelles(char *chaine1){
   int j = 0;
   int nb_voyelles = 0;
   char * pretour = malloc(LM*sizeof(char));
@@ -20,7 +20,8 @@ char *voyelles(const char *chaine1){
         j++;
     }
   }
-  return pretour;
+  chaine1=pretour;
+  return chaine1;
 }
 
 int main(){

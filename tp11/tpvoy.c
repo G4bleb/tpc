@@ -24,4 +24,5 @@ int main(){
   printf("Saisir une chaîne de caractères\n");
   fgets(chaine1, LM, stdin);
   printf("%d\n", voyelles(chaine1));
+  return 0;
 }

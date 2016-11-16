@@ -28,4 +28,5 @@ int main(){
   fgets(chaine1, LM, stdin);
   char voy[strlen(chaine1)];
   printf("Nombre de voyelles : %d, les voici : %s\n", voyelles(chaine1, voy), voy);
+  return 0;
 }
