@@ -10,8 +10,9 @@ Programme produit le 14/11/16 par Gabriel LEBIS
 char *voyelles(const char *chaine1){
   int j = 0;
   int nb_voyelles = 0;
-  char * pretour = malloc(LM*sizeof(char));
+
   size_t long_chaine = strlen(chaine1); //size_t aka long unsigned int
+  char * pretour = malloc((long_chaine+1)*sizeof(char));
   for (int i = 0; i < long_chaine; i++) {
     switch (chaine1[i]){
       case 'a': case 'e': case 'i': case 'o': case 'u': case 'y': case 'A': case 'E': case 'I': case 'O': case 'U': case 'Y':
@@ -20,6 +21,7 @@ char *voyelles(const char *chaine1){
         j++;
     }
   }
+  pretour[j+1]='\0';
   return pretour;
 }
 
