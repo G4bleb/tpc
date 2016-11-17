@@ -29,6 +29,6 @@ int main(){
   printf("Saisir une chaîne de caractères\n");
   fgets(chaine1, LM, stdin);
   char *voy = voyelles(chaine1);
-  printf("Nombre de voyelles : %s, les voici : %ld\n", voy,strlen(voy));
+  printf("Nombre de voyelles : %ld, les voici : %s\n",strlen(voy), voy);
   return 0;
 }
