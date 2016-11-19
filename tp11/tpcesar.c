@@ -1,6 +1,6 @@
 /*
-
-Programme produit le  par Gabriel LEBIS
+Programme de cryptage/décryptage du code de César
+Programme produit le 19/11/16 par Gabriel LEBIS
 */
 #include <stdio.h>
 #include <string.h>
