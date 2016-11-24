@@ -5,7 +5,7 @@ Programme produit le 19/11/16 par Gabriel LEBIS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define KEY3 14
+#define KEY3 4
 
 int testUpperCase (char letter_c){
   if (65<=letter_c && letter_c<=90) {
@@ -64,21 +64,16 @@ char *decryption(const char *code1_pc, int key1_i){
 
 float *freqAnalysis(const char *texte1_pc){
   int i;
-  int nmaj;
+  int nmaj=0;
   size_t long_texte = strlen(texte1_pc);
   float *freq = calloc(26,sizeof(float)); //calloc = malloc, mais écrit 0 sur tous les éléments du tableau (Clear memory ALLOCation)
   for (i = 0; i < long_texte; i++) {
     if (testUpperCase(texte1_pc[i])) {
       nmaj++;
-      switch (texte1_pc[i]) {
-        case 'A':freq[0]+=1;break; case 'B':freq[1]+=1;break; case 'C':freq[2]+=1;break; case 'D':freq[3]+=1;break; case 'E':freq[4]+=1;break; case 'F':freq[5]+=1;break; case 'G':freq[6]+=1;break;
-        case 'H':freq[7]+=1;break; case 'I':freq[8]+=1;break; case 'J':freq[9]+=1;break; case 'K':freq[10]+=1;break; case 'L':freq[11]+=1;break; case 'M':freq[12]+=1;break; case 'N':freq[13]+=1;break;
-        case 'O':freq[14]+=1;break; case 'P':freq[15]+=1;break; case 'Q':freq[16]+=1;break; case 'R':freq[17]+=1;break; case 'S':freq[18]+=1;break; case 'T':freq[19]+=1;break; case 'U':freq[20]+=1;break;
-        case 'V':freq[21]+=1;break; case 'W':freq[22]+=1;break; case 'X':freq[23]+=1;break; case 'Y':freq[24]+=1;break; case 'Z':freq[25]+=1;break;
-      }
+      freq[texte1_pc[i]-65]+=1;
     }
   }
-  for (i = 0; i < 25; i++) {
+  for (i = 0; i < 26; i++) {
     freq[i]=(freq[i]/nmaj)*100;
   }
   return freq;
@@ -86,23 +81,23 @@ float *freqAnalysis(const char *texte1_pc){
 
 void printfreq(const float *freq){
   int i;
-  for (i = 0; i < 25; i++) {
+  for (i = 0; i < 26; i++) {
     printf("%3.1f\t", freq[i]);
   }
 }
 
 int computeKey(const float *freq){
-  int i, key;
-  int j = 0;
-  for (i = 1; i < 24; i++){
+  int i, key=0, j=0;
+  for (i = 1; i < 26; i++){
     if (freq[i]>freq[j]) {
       j=i;
     }
   }
-  switch (j) {
-    case 0:key=22;break; case 1:key=23;break; case 2:key=24;break; case 3:key=25;break; case 4:key=0;break; case 5:key=1;break; case 6:key=2;break; case 7:key=3;break; case 8:key=4;break; case 9:key=5;break;
-    case 10:key=6;break; case 11:key=7;break; case 12:key=8;break; case 13:key=9;break; case 14:key=10;break; case 15:key=11;break; case 16:key=12;break; case 17:key=13;break; case 18:key=14;break; case 19:key=15;break;
-    case 20:key=16;break; case 21:key=17;break; case 22:key=18;break; case 23:key=19;break; case 24:key=20;break; case 25:key=21;break;
+  if (j<4) {
+    key = j+22;
+  }
+  if (j>4) {
+    key = j-4;
   }
   return key;
 }

@@ -40,7 +40,7 @@ char *move(char grille[X_GRILLE][Y_GRILLE], int *xpos, int *ypos){
   }
   //if (*xpos>X_GRILLE) {grille[X_GRILLE][*ypos]='X';*xpos=X_GRILLE;}
   //if (*ypos>Y_GRILLE) {grille[*xpos][Y_GRILLE]='X';*ypos=Y_GRILLE;}
-  //if (*xpos<0) {grille[0][*ypos]='X';*xpos=0;}
+  if (*xpos<0) {grille[0][*ypos]='X';*xpos=0;}
   if (*ypos<0) {grille[*xpos][0]='X';*ypos=0;}
   return *grille;
 }
@@ -55,7 +55,7 @@ int main(){
       grille[x][y]=' ';
     }
   }
-
+  grille[xpos][ypos]='X';
   for(;;){
     system("clear");
     afficher_grille(grille);
