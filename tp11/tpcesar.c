@@ -155,7 +155,8 @@ int main(){
 
   char texte3_pc[] = "Depuis longtemps, j'ai la manie de glisser des jeux de mots lors des conversations. Les gens de mon entourage ne pouvant plus me supporter, je me suis mis a les ecrire. Lorsque je suis entre a l'Ecole Polytechnique de Montreal, j'ai eu l'occasion d'ecrire une chronique hebdomadaire dans le journal etudiant, le Polyscope. Ce sont ces textes qui se retrouvent dans le present recueil.";
   printf("Texte 3 : \n\n%s\n\n", texte3_pc);
-  char *code3_pc = encryption(texte3_pc, KEY3);
+  //char *code3_pc = encryption(texte3_pc, KEY3);
+  char code3_pc[] ="ZNVGER PBEORNH, FHE HA NEOER CREPUR, GRANVG RA FBA ORP HA SEBZNTR. ZNVGER ERANEQ CNE Y'BQRHE NYYRPUR, YHV GVAG N CRH CERF PR YNATNTR : RG OBAWBHE ZBAFVRHE QH PBEORNH. DHR IBHF RGRF WBYV! DHR IBHF ZR FRZOYRM ORNH! FNAF ZRAGVE, FV IBGER ENZNTR FR ENCCBEGR N IBGER CYHZNTR IBHF RGRF YR CURAVK QRF UBGRF QR PRF OBVF. N PRF ZBGF YR PBEORNH AR FR FRAG CNF QR WBVR; RG CBHE ZBAGERE FN ORYYR IBVK, VY BHIER HA YNETR ORP YNVFFR GBZORE FN CEBVR. YR ERANEQ F'RA FNVFVG RG QVG : ZBA OBA ZBAFVRHE, NCERARM DHR GBHG SYNGGRHE IVG NH QRCRAF QR PRYHV DHV Y'RPBHGR : PRGGR YRPBA INHG OVRA HA SEBZNTR FNAF QBHGR. YR PBEORNH UBAGRHK RG PBASHF WHEN ZNVF HA CRH CYHF GNEQ, DH'BA AR Y'L CERAQENVG CYHF.";
   printf("Code 3 : \n\n%s\n\n", code3_pc);
   printfreq(freqAnalysis(code3_pc));
   int key3_i=computeKey(freqAnalysis(code3_pc));
