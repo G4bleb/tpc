@@ -19,3 +19,4 @@ void dispClient(Client *tab_clients, int i);
 void dispClients(const int nb_clients, Client *tab_clients);
 int rechercheClient(const int nb_clients, Client *tab_clients);
 Client *supprClient(Client *tab_clients, int *nb_clients);
+void virement(Client *tab_clients, int nb_clients);
