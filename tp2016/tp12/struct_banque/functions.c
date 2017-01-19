@@ -86,10 +86,8 @@ int rechercheClient(const int nb_clients, Client *tab_clients){
 
 Client *supprClient(Client *tab_clients, int *nb_clients){
   int saisie;
-  printf("Quel client souhaitez vous supprimer ? Entrez le numéro du client\n");
-  scanf("%d", &saisie);
-  *nb_clients-=1;
-  saisie-=1;
+  printf("Quel client souhaitez vous supprimer ?\n");
+  saisie = rechercheClient(*nb_clients, tab_clients);
   printf("%d\n", *nb_clients);
   tab_clients[saisie].solde = tab_clients[*nb_clients].solde;
 
@@ -105,15 +103,22 @@ Client *supprClient(Client *tab_clients, int *nb_clients){
 }
 
 void virement(Client *tab_clients, int nb_clients){
-  int i, j, somme;
+  int i, j, somme, brk=0;
   printf("De quel client souhaitez vous faire un virement ?\n");
   i = rechercheClient(nb_clients, tab_clients);
   //scanf("%d", &i);
   printf("À quel client souhaitez vous faire le virement ?\n");
   j = rechercheClient(nb_clients, tab_clients);
   //scanf("%d", &j);
-  printf("Quelle somme souhaitez vous transférer ?\n");
-  scanf("%d", &somme);
+  while (brk = 0) {
+    printf("Quelle somme souhaitez vous transférer ?\n");
+    scanf("%d", &somme);
+    brk = 1;
+    if (somme <0) {
+      brk = 0;
+      printf("Erreur : la somme indiquée est négative\n");
+    }
+  }
   tab_clients[j].solde += somme;
   tab_clients[i].solde -= somme;
   printf("Virement effectué\n");

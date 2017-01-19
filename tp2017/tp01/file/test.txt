@@ -1,0 +1,4 @@
+Ceci est un test,
+pour tester un test
+testant un test
+d'un fichier texte de test
