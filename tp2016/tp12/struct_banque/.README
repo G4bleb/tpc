@@ -1,18 +1,17 @@
 Spécifs générales
-Logiciel pour une banque : pour - créer des client
-- afficher les infos d'un client / tous les clients
-- faire des virements entre clients
+Logiciel pour une banque :
+- Créer des client
+- Afficher les infos d'un client / tous les clients
+- Faire des virements entre clients
 Spécifs Détaillées :
-1)Info de chaque client : -nom
--prénom
--solde du compte
+1)Infos de chaque client :
+- Nom
+- Prénom
+- Solde du compte
 2) Nb max clients pas connu a l'avance -> Tableau alloué dynamiquement
-3) fonctions :
+3) Fonctions :
 - Ajout d'un nouveau client ( inclut la saisie des infos )
 - Recherche d'un client par son nom / prénom
 - Affichage d'un client / tous les clients
 - Suppression d'un client
 - Virement entre 2 clients
-Odre : - Structs communes
-- Fonction 1 -> Testé dans le main
-- Appel du prof
