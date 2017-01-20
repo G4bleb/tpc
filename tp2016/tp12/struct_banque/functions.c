@@ -1,5 +1,51 @@
 #include "header.h"
 
+Client *getClients(int *nb_clients){
+  Client *tab_clients = NULL;
+  FILE *fp = NULL;
+  if ((fp = fopen("registre.txt","r"))==NULL){ //On ouvre le fichier pour lecture: en cas d'erreur, on rentre dans le if()
+    printf("Erreur fichier\n");
+  }
+  int i=0,j=0;
+  char ligne[LM];
+  while (fgets(ligne, LM, fp)) { //Lecture de tout le fichier
+    if (j==0) {
+      tab_clients = realloc(tab_clients, ((i+1)*sizeof(Client)));
+      ligne[strlen(ligne)-1]='\0';
+      tab_clients[i].nom = malloc((strlen(ligne)+1)*sizeof(char));
+      strcpy(tab_clients[i].nom, ligne);
+    }
+    if (j==1){
+      ligne[strlen(ligne)-1]='\0';
+      tab_clients[i].prenom = malloc((strlen(ligne)+1)*sizeof(char));
+      strcpy(tab_clients[i].prenom, ligne);
+    }
+    if (j==2) {
+      tab_clients[i].solde = atoi(ligne);
+      i++;
+    }
+    j++;
+    if (j==3) {
+      j=0;
+    }
+  }
+  fclose(fp);
+  *nb_clients = i;
+  return tab_clients;
+}
+
+void writeClients(Client *tab_clients, const int nb_clients){
+  int i=0;
+  FILE *fp = NULL;
+  fp = fopen("registre.txt","w");
+  while (i!=nb_clients){
+    fprintf(fp, "%s\n",tab_clients[i].nom);
+    fprintf(fp, "%s\n",tab_clients[i].prenom);
+    fprintf(fp, "%d\n",tab_clients[i].solde);
+    i++;
+  }
+}
+
 int menu(){
   int saisie;
   printf("\nMenu principal :\n\n1)Ajouter des clients\n2)Afficher tous les clients\n3)Rechercher un client\n4)Effectuer un virement\n5)Supprimer un client\n0)Quitter\n\n");

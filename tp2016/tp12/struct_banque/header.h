@@ -13,6 +13,8 @@ struct Client{
 };
 typedef struct Client Client;
 
+Client *getClients();
+void writeClients(Client *tab_clients, const int nb_clients);
 int menu();
 Client *ajoutClient(Client *tab_clients, int *nb_clients);
 void dispClient(Client *tab_clients, int i);

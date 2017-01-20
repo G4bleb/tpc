@@ -27,5 +27,10 @@ int main(int argc, char *argv[]){ //Un argument : chemin du fichier à lire
 
   printf("Nb de lignes : %d\n", nligne);
   fclose(fp);
+
+  fp = fopen(argv[1],"a");
+  fprintf(fp,"%s\n","bruh");
+  fclose(fp);
+
   return 0;
 }
