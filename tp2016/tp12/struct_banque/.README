@@ -8,7 +8,7 @@ Spécifs Détaillées :
 - Nom
 - Prénom
 - Solde du compte
-2) Nb max clients pas connu a l'avance -> Tableau alloué dynamiquement
+2) Nombre max de clients pas connu a l'avance -> Tableau alloué dynamiquement
 3) Fonctions :
 - Ajout d'un nouveau client ( inclut la saisie des infos )
 - Recherche d'un client par son nom / prénom
