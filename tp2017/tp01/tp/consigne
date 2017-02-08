@@ -1,0 +1,17 @@
+1)
+-Définir un élément de liste chainée avec une charge utile = un entier
+-Ajouter 2 éléments
+-Parcourir la liste avec affichage de charge élément
+2)
+"packager" dans 2 fonctions
+-ajout() d'un élément en tête
+-parcours() de liste
+3)
+fonction d'insertion en queue :
+2 méthodes :
+a) -parcours pour rechercher le dernier client (celui qui a pour pointeur de suiv NULL)
+   -affecter ce pointeur suiv avec l'adresse du nouvel élément alloué
+b)passer en E/S l'adresse du dernier élément
++main ()
+-2 appels de ajout()
+-1 appel de parcours()
