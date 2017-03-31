@@ -15,3 +15,4 @@ struct noeud {
 typedef struct noeud noeud;
 
 void traduction(char *mot, noeud* lexique);
+struct noeud* inserer(char *motfr, char *moteng, struct noeud* lexique);
