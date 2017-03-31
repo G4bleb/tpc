@@ -5,6 +5,7 @@ Programme produit le  par Gabriel LEBIS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#define SAISIE_MAX 20
 
 struct noeud {
   char* motfr;

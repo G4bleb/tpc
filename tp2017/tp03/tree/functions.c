@@ -52,6 +52,6 @@ struct noeud* inserer(char *motfr, char *moteng, struct noeud* lexique){
       parcours->filsD=newnoeud;
     }
   }
-  printf("inserted !\n");
+  if (!cmp) printf("Valeur déjà dans le dictionnaire\n");
   return lexique;
 }

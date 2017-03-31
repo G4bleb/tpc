@@ -4,12 +4,16 @@ int main(){
   racine = inserer("avion", "plane", racine);
   racine = inserer("age", "age", racine);
   racine = inserer("noeud", "node", racine);
-  printf("Root : FR : %s ENG : %s\n", racine->motfr, racine->moteng);
-  noeud *filsde = racine->filsG;
-  printf("FilsG : FR : %s ENG : %s\n", filsde->motfr, filsde->moteng);
-  filsde = racine->filsD;
-  printf("FilsD : FR : %s ENG : %s\n", filsde->motfr, filsde->moteng);
-  traduction("age", racine);
-  traduction("noeud", racine);
-  return 0;
+  racine = inserer("fraise", "strawberry", racine);
+  racine = inserer("vert", "green", racine);
+  racine = inserer("robinet", "tap", racine);
+  printf("Menu principal :\nRentrez un mot à traduire, tapez \"fin\" pour arrêter:\n");
+  char saisie[SAISIE_MAX];
+  while(1){
+    fgets(saisie, SAISIE_MAX, stdin);
+    if (!strcmp(saisie, "fin")) return 0;
+    saisie[strlen(saisie)] = '\0';
+    traduction(saisie, racine);
+  }
+  return -1;
 }
