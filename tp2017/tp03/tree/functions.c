@@ -2,11 +2,10 @@
 
 void traduction(char *mot, noeud* lexique){
   noeud *parcours = lexique;
-  printf("Translating...\n");
   int cmp=strcmp(mot,parcours->motfr);
   while (cmp && parcours){
     cmp=strcmp(mot,parcours->motfr);
-    printf("Cmp = %d\n", cmp);
+    //printf("Cmp = %d\n", cmp);
     if (cmp<0){
       parcours = parcours->filsG;
     }else if (cmp>0){
@@ -14,7 +13,7 @@ void traduction(char *mot, noeud* lexique){
     }
   }
   if(!cmp){
-    printf("%s\n", parcours->moteng);
+    printf("FR : %s EN : %s\n", mot, parcours->moteng);
   }else{
     printf("Mot non trouvé\n");
   }
@@ -31,27 +30,27 @@ struct noeud* inserer(char *motfr, char *moteng, struct noeud* lexique){
 
   if (!lexique){
     lexique=newnoeud;
-    printf("root inserted !\n");
     return lexique;
   }
 
   noeud *parcours = lexique;
   int cmp=strcmp(motfr,parcours->motfr);
   while (cmp && parcours){
-    cmp=strcmp(motfr,parcours->motfr);
-    printf("Cmp = %d\n", cmp);
+    //printf("Cmp = %d\n", cmp);
     if (cmp<0 && parcours->filsG){
-      printf("going to the left\n");
+      //printf("going to the left\n");
       parcours = parcours->filsG;
     }else if (cmp>0 && parcours->filsD){
-      printf("going to the right\n");
+      //printf("going to the right\n");
       parcours = parcours->filsD;
     }else if (!parcours->filsG){
       parcours->filsG=newnoeud;
     }else if (!parcours->filsD){
       parcours->filsD=newnoeud;
     }
+    cmp=strcmp(motfr,parcours->motfr);
   }
-  if (!cmp) printf("Valeur déjà dans le dictionnaire\n");
+  //printf("\n");
+  if (cmp) printf("Valeur déjà dans le dictionnaire\n");
   return lexique;
 }

@@ -7,12 +7,12 @@ int main(){
   racine = inserer("fraise", "strawberry", racine);
   racine = inserer("vert", "green", racine);
   racine = inserer("robinet", "tap", racine);
-  printf("Menu principal :\nRentrez un mot à traduire, tapez \"fin\" pour arrêter:\n");
   char saisie[SAISIE_MAX];
+  printf("Lexique Anglais-Français :\nRentrez un mot à traduire, tapez \"fin\" pour arrêter:\n");
   while(1){
     fgets(saisie, SAISIE_MAX, stdin);
+    saisie[strlen(saisie)-1] = '\0';
     if (!strcmp(saisie, "fin")) return 0;
-    saisie[strlen(saisie)] = '\0';
     traduction(saisie, racine);
   }
   return -1;
