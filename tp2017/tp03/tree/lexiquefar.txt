@@ -1,0 +1,506 @@
+Héritage simple:Single inheritance
+Étiquette:Label
+Capacité:Capability
+Flottant:Float
+Redéfinition:Overriding
+Arrondi à l'entier inférieur:Round down to nearest integer
+Récursion terminale:Last call recursion (tail recursion)
+À la compilation:Compile time
+Verrou:Lock
+Complexité:Complexity
+Arbre équilibré:Balanced tree
+Virgule flottante:Floating point
+Argument effectif:Actual argument
+Gadget logiciel:Widget
+Diagramme de classe:Class diagram
+Allocation:Allocation
+Optimisation terminale:Last call optimization
+Traitement en temps réel:Real-time processing
+Système interactif:Interactive system
+Sémantique opérationnelle:Operational semantics
+Unaire:Unary
+Boucle imbriquée:Nested loop
+Appel:Call
+Racine cubique:Cube root
+Calculatrice:Calculator
+Application de fonction:Function application
+Procédure:Procedure
+Graphe de petit monde:Small world graph
+Application:Application
+Réemploi de logiciel:Software reuse
+Court-circuit:Short circuit
+Type abstrait:Abstract data type (ADT)
+Rythmeur:Interval timer
+Tranche de temps:Time slice
+Tri par fusion:Mergesort
+Ordonnanceur:Scheduler
+Affectation unique:Single assignment
+Clause:Clause
+Graphe orienté:Directed graph
+Passage par variable:Call by variable
+Dictionnaire:Dictionary
+Canal à envoi unique:One-shot channel
+Développement de logiciel:Software development
+Interface graphique:Graphical user interface (GUI)
+Système multi-agent:Multi-agent system
+Égalité:Equality
+Affectation multiple:Multiple assignment
+Concurrence dirigée par l'offre:Supply-driven concurrency
+Course:Race condition
+NP-complétude:NP completeness
+Fuite de mémoire:Memory leak
+Variable liée:Bound variable
+Endiguement d'erreurs:Error containment
+Égalité d'identité:Token equality
+Surcoût:Overhead
+Saut:Jump
+Modèle de programmation:Programming model
+État implicite:Implicit state
+Itérateur:Iterator
+Référencer:Reference
+Instance:Instance
+Plafond (Fonction):Ceiling (function)
+Polynôme:Polynomial
+Fermeture (valeur procédurale ou fonctionnelle):Closure (procedure or function value)
+Récupérer (de la mémoire):Reclaim (memory)
+Récursion:Recursion
+Concurrence dirigée par la demande:Demand-driven concurrency
+Code source:Source code
+Cadre (de fenêtre):Frame (of window)
+Programmation extrême:Extreme programming
+Tableau:Array
+Programmation d'ordre supérieur:Higher-order programming
+Affectation:Assignment
+Arête (de graphe):Edge (of graph)
+Lien incompatible:Inconsistent binding
+En-tête de méthode:Method head
+Paire:Pair
+Variable affectable:Assignable variable
+Variable de type:Type variable
+Associatif:Associative
+Sémantique:Semantics
+Composant principal:Main component
+Littéral:Literal
+État partagé:Shared state
+Dispositif d'interruption:Timer interrupt
+Programmation par boucle d'événements:Event-loop programming
+Compactage:Compaction
+Algorithme:Algorithm
+Typage fort:Strong typing
+Haute disponibilité:High availability
+Borne:Bound
+Exécution:Execution
+Langage noyau:Kernel language
+Typage faible:Weak typing
+À l'exécution:Run-time
+Génie logiciel:Software engineering
+Saut de ligne:Newline
+Emballage:Wrapper
+Émetteur:Source
+Vases communicants:Communicating vessels
+Longueur:Length
+Diviser-pour-régner:Divide-and-conquer
+Passage de paramètres:Parameter passing
+Conception par contrat:Design by contract
+Concurrence dataflow (par flux de données):Dataflow concurrency
+Détection tôt d'erreurs:Early error detection
+Système de fichiers:File system
+Exception non capturée:Uncaught exception
+Balise:Marker
+Programmation dataflow (par flux de données):Dataflow programming
+Mandataire:Proxy
+État explicite:Explicit state
+Type abstrait avec état:Stateful abstract data type
+Attribut privé:Private attribute
+Ensemble racine:Root set
+Instruction:Statement
+Fermeture transitive:Transitive closure
+État initial:Initial state
+Type de données:Data type
+Ordonné:Ordered
+Programmation déclarative:Declarative programming
+Argument:Argument
+Non-déterminisme:Nondeterminism
+Manipulateur:Handler
+Chargement:Loading
+Programme principal:Main program
+Nœud externe (d'un arbre):Leaf node (of a tree)
+Fonction anonyme:Anonymous function
+Serveur sans état:Stateless server
+Programmation logique par contraintes:Constraint logic programming
+Adjonction:Adjunction
+Attribut:Attribute
+Entrée:Input
+Clé:Key
+Programmation à petite échelle:Programming in the small
+Fonction:Function
+Fil exécutable (prêt):Runnable (ready) thread
+Largeur:Width
+Sortie standard:Standard output
+Correctif:Patch
+Retrait:Deletion
+Nœud (de graphe):Node (of graph)
+Fichier:File
+Arbre:Tree
+Identificateur lié:Bound identifier
+Module:Module
+Modèle de calcul:Computation model
+Enregistrement:Record
+Rétroaction:Feedback
+Composition:Composition
+Induction mathématique:Mathematical induction
+Langage à contraintes concurrentes:Concurrent constraint language
+Récepteur:Sink
+Pipeline:Pipeline
+Classe interne:Inner class
+Portée:Scope
+Liste:List
+Développement par tiers:Third-party development
+Méthode:Method
+Borne supérieure:Upper bound
+Grammaire sensible au contexte:Context-sensitive grammar
+Polynomial:Polynomial
+Boucle de rétroaction:Feedback loop
+Hiérarchie de classe:Class hierarchy
+Ordinateur:Computer
+Type:Type
+Traducteur:Compiler
+Appel de bibliothèque:Library call
+Fonction génératrice:Generating function
+Canal de communication:Communication channel
+Capacité objet:Object capability
+Traitement par lots:Batch processing
+Programmation fonctionnelle réactive:Functional reactive programming
+Correspondance de formes:Pattern matching
+Tas:Heap
+Grammaire:Grammar
+Équité:Fairness
+Fréquence d'horloge:Clock frequency
+Table de hachage:Hash table
+Fusionner (deux listes):Merge (two lists)
+Implantation:Installation
+Constante:Constant
+Colonne:Column
+Boucle:Loop
+Principe de substitution:Substitution principle
+Temps réel:Real time
+Programmation multi-paradigme:Multiparadigm programming
+Modularité:Modularity
+Tube à vide:Vacuum tube
+Mot:Word
+Surcharge:Overloading
+Implémentation:Implementation
+Arrondi à l'entier supérieur:Round up to nearest integer
+Matériel:Hardware
+Terminaison partielle:Partial termination
+Jeu multijoueur:Multiuser game
+Programmation logique:Logic programming
+Paire (de liste):Cons
+Valeur procédurale (fermeture procédurale):Procedure value (procedure closure)
+Programmation par contraintes:Constraint programming
+Binaire:Binary
+Cadre d'applications:Application framework
+Disponibilité:Availability
+Chaîne (de caractères):(Character) string
+Envoi procédural:Procedure dispatching
+Interface:Interface
+Agrégat:Bundle
+Concurrence par envoi de messages:Message-passing concurrency
+Dépiler:Pop
+Queue (de liste):Tail (of list)
+Exception:Exception
+Mise à jour:Update
+Atome:Atom
+Balise d'insertion:Nesting marker
+Bug ou bogue:Bug
+Terminaison complète:Complete termination
+Application autonome:Standalone application
+Désallocation:Deallocation
+Interruption:Interrupt
+Micro-monde:Microworld
+Machine abstraite:Abstract machine
+Nouveau nom:Fresh name
+Système fiable:Reliable system
+Fiabilité:Reliability
+Référence externe:External reference
+Bloc de mémoire libre:Free memory block
+Programmation orienté but:Goal-oriented programming
+Entier:Integer
+Tri rapide:Quicksort
+Objet actif:Active object
+Table de symboles:Symbol table
+Calcul:Computation
+Installation:Linking
+Identificateur libre:Free identifier
+Arbre de recherche:Search tree
+Préprocesseur:Preprocessor
+Retour:Return
+Sous-composant:Subcomponent
+Développement dirigé par les tests:Test-driven development
+Matrice:Matrix
+Bloc de mémoire inactif:Inactive memory block
+Ramasse-miettes:Garbage collector
+Nom:Name
+Contrainte:Constraint
+Mémoire tampon:Buffer
+Composante logicielle (d'un système):Software part (of a system)
+Environnement de module:Module environment
+Commentaire:Comment
+Envoi de messages:Message passing
+Renvoyer:Return
+Règle de grammaire:Grammar rule
+Temps réel mou:Soft real time
+Condition d'activation:Activation condition
+Portée statique:Static scope
+Agrégation:Bundling
+Gestionnaire d'exceptions:Exception handler
+Superclasse:Superclass
+Déclaration:Declaration
+Encapsulation:Encapsulation
+Interface homme-machine (IHM):Man-machine interface (MMI)
+Programmation par contraintes concurrentes:Concurrent constraint programming
+Substitution:Substitution
+Exécution immédiate:Eager execution
+Tri:Sort
+Complexité spatiale:Space complexity
+Héritage:Inheritance
+Programmation par capacité objet:Object-capability programming
+Ordinateur à programme enregistré:Stored program computer
+Expression régulière:Regular expression
+Déclencheur:Trigger
+Informatique:Informatics (computer science)
+Sémantique logique:Logical semantics
+Spécification:Specification
+Cycle de vie mémoire:Memory lifecycle
+Réseau:Network
+Exigence fonctionnelle:Functional requirement
+Pile sémantique:Semantic stack
+Parallélisme:Parallelism
+Interblocage:Deadlock
+Utilisateur final:End user
+Empiler:Push
+Tuyau (Unix):(Unix) pipe
+Point de repos:Resting point
+Lien dynamique:Dynamic binding
+Occurrence d'identificateur liée:Bound identifier occurrence
+Exécution paresseuse:Lazy execution
+Enfiler:Thread
+Raisonnement:Reasoning
+Lieu de contrôle:Locus of control
+Ligne (d'une matrice):Row (of a matrix)
+Effet de bord:Side effect
+Instruction sémantique:Semantic statement
+Lien:Binding
+Temps réel dur:Hard real time
+Identificateur:Identifier
+Jeton:Token
+Programmation basée objet:Object-based programming
+Expression:Expression
+Flot:Stream
+Héritage multiple:Multiple inheritance
+Développement ascendant:Bottom-up development
+Borne inférieure:Lower bound
+Objet à flots:Stream object
+Logiciel:Application
+Forme:Pattern
+Producteur/consommateur:Producer/consumer
+Polymorphisme:Polymorphism
+Programmation par composants:Component-based programming
+Itération:Iteration
+Système à objets:Object system
+Programmation multi-agent:Multi-agent programming
+Programmation concurrente:Concurrent programming
+Composition séquentielle:Sequential composition
+Mémoire à affectation unique:Single-assignment store
+Adresse:Address
+Clavier:Keyboard
+Coder:Encode
+Bloc de mémoire:Memory block
+Langage à contraintes:Constraint language
+Refactorisation:Refactoring
+Champ:Field
+Lot:Batch
+Variable:Variable
+Sémantique axiomatique:Axiomatic semantics
+Instancier:Instantiate
+Grammaire hors-contexte:Context-free grammar
+Débuggeur:Debugger
+Principe d'endiguement:Containment principle
+Variable libre (non liée):Free (unbound) variable
+Utilisateur:User
+État d'exécution:Execution state
+Données partagées:Shared data
+Décision de conception:Design decision
+Fil:Thread
+Environnement:Environment
+Composition concurrente:Concurrent composition
+Langage symbolique:Symbolic language
+Graphisme:Graphics
+Ordre des opérations:Control flow
+Envoi par enregistrement:Record dispatching
+Exactitude:Correctness
+Mémoire à affectation multiple:Multiple-assignment store
+Complexité amortie:Amortized complexity
+Fonction locale:Local function
+Concurrence:Concurrency
+Environnement global:Global environment
+Appel de fonction:Function call
+File:Queue
+Saut de page:Form feed
+Motif de conception:Design pattern
+Paradigme de programmation:Programming paradigm
+Lien statique:Static binding
+Concurrence déclarative (dataflow):Declarative (dataflow) concurrency
+Symbole non terminal:Nonterminal symbol
+Tableau:Table
+Signature de type:Type signature
+Graphe:Graph
+Complément à deux:Two's complement
+Faux:False
+Abstraction procédurale:Procedural abstraction
+Modèle déclaratif concurrent:Concurrent declarative model
+Retour de chariot (caractère de):Carriage return (character)
+Super-ordinateur:Supercomputer
+Classe:Class
+Passage par référence:Call by reference
+Règle de visibilité:Visibility rule
+Mémoire:Store (memory)
+Mémoisation:Memoization
+Côté (de fenêtre):Border (of window)
+Pile:Stack
+Factorielle:Factorial
+Rangée (d'une matrice):Row (of a matrix)
+Fil suspendu:Suspended thread
+Octet:Byte
+Gabarit:Template
+Conception de programmes:Program design
+Variable partagée:Shared variable
+Ordonnanceur cyclique:Round-robin scheduler
+Exécution entrelacée:Interleaving execution
+Capture d'écran:Screenshot
+Calcul à la main:Hand calculation
+Indice (de matrice):Index (of matrix)
+Cellule:Cell
+Gestion de mémoire:Memory management
+Ordinogramme:Flowchart
+Soulignement (caractère de):Underscore (character)
+Moyenne:Average
+Liste enchaînée:Linked list
+Transparence référentielle:Referential transparency
+Ordinateur portable:Laptop computer
+Typage statique:Static typing
+Portée lexicale:Lexical scope
+Complexité au pire:Worst-case complexity
+Bytecode:Bytecode
+Logiciel:Software
+Fonction de type:Type function
+Plancher (Fonction):Floor (function)
+Occurrence d'identificateur libre:Free identifier occurrence
+Arité:Arity
+État:State
+Sucre syntaxique:Syntactic sugar
+Graphe d'appels:Call graph
+Programmation impérative:Imperative programming
+Langage courant:Mainstream language
+Système d'exploitation:Operating system
+Déboguer:Debug
+Programmation à grande échelle:Programming in the large
+Mot clé:Keyword
+Modèle à état:Stateful model
+Concurrence par état partagé:Shared-state concurrency
+Environnement contextuel:Contextual environment
+Espace de tuples:Tuple space
+Agrégé:Bundled
+Restriction:Restriction
+Condition de limite:Boundary condition
+Développement descendant:Top-down development
+Objet déclaratif:Declarative object
+Base de données:Database
+Symbole terminal:Terminal symbol
+Pointeur:Pointer
+Booléen:Boolean
+Agent:Agent
+Finalisation:Finalization
+Nœud interne (d'un arbre):Nonleaf node (of a tree)
+Passage par valeur:Call by value
+Système réparti:Distributed system
+Abstraction linguistique:Linguistic abstraction
+Exigence:Requirement
+Terminaison:Termination
+Sous-arbre:Subtree
+Composant:Component
+Racine carrée:Square root
+Concaténation:Concatenation
+Canal à envoi multiple:Many-shot channel
+Ordinateur personnel:Personal computer
+Bloc:Block
+Invariant:Invariant
+Ressource:Resource
+Profilage:Profiling
+Écran:Display
+Enlever:Delete
+Détection tardive d'erreurs:Late error detection
+Accumulateur:Accumulator
+Tête (de liste):Head (of list)
+Complexité temporelle:Time complexity
+Ensemble:Set
+Composant logiciel:Software component
+Exigence non fonctionnelle:Nonfunctional requirement
+Structure de données:Data structure
+Sous-classe:Subclass
+Argument formel:Formal argument
+Valeur:Value
+Message:Message
+Valeur fonctionnelle (fermeture fonctionnelle):Function value (function closure)
+Tuple:Tuple
+Barre de défilement:Scroll bar
+Ternaire:Ternary
+Transformateur (d'un flot):Transducer (of a stream)
+Délabrement de logiciel:Software rot
+Objet:Object
+Sommet (de pile):Top (of stack)
+Foncteur:Functor
+Programme:Program
+Programmation avec état:Stateful programming
+Identificateur échappé:Escaped identifier
+Abstraction de données:Data abstraction
+Valeur partielle:Partial value
+Mémoire cache:Cache memory
+Ramassage de miettes:Garbage collection
+Hiérarchie de types:Type hierarchy
+Pas (d'exécution):(Execution) step
+Compilateur:Compiler
+Traduction:Translation (compilation)
+Instruction bloquée:Blocked statement
+Sortie:Output
+À distance:Remote
+Portée dynamique:Dynamic scope
+Port:Port
+Espace blanc:White space
+Mémoire vive:Random access memory (RAM)
+Programmation orientée objet:Object-oriented programming
+Processus:Process
+Abstraction de contrôle:Control abstraction
+Égalité de structure:Structure equality
+Pointeur détaché:Dangling pointer
+Conditionnel:Conditional
+Syntaxe:Syntax
+Entrée standard:Standard input
+Curryfication:Currying
+Synchronisation par besoin:By-need synchronization
+Modèle déclaratif:Declarative model
+Programmation par flots:Stream-based programming
+Sémantique entrelacée:Interleaving semantics
+Sémantique formelle:Formal semantics
+Typage:Typing
+Mémoire à valeurs:Value store or value memory
+Typage dynamique:Dynamic typing
+Bloc de mémoire actif:Active memory block
+Structure composée:Compound structure
+Vrai:True
+Client/serveur:Client/server
+Langage de programmation:Programming language
+Langage d'assemblage:Assembly language
+Mémoire affectable:Mutable store
+Langage cible:Target language
+Programmation fonctionnelle:Functional programming
