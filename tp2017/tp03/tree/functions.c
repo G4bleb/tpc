@@ -19,8 +19,8 @@ void traduction(char *mot, noeud* lexique){
   }
 }
 
-struct noeud* inserer(char *motfr, char *moteng, struct noeud* lexique){
-  struct noeud *newnoeud = malloc(sizeof(noeud));
+noeud* inserer(char *motfr, char *moteng, noeud* lexique){
+  noeud *newnoeud = malloc(sizeof(noeud));
   newnoeud->motfr=malloc(strlen(motfr)+1);
   newnoeud->moteng=malloc(strlen(moteng)+1);
   strcpy(newnoeud->motfr, motfr);
@@ -35,6 +35,7 @@ struct noeud* inserer(char *motfr, char *moteng, struct noeud* lexique){
 
   noeud *parcours = lexique;
   int cmp=strcmp(motfr,parcours->motfr);
+  char inserted = 0;
   while (cmp && parcours){
     //printf("Cmp = %d\n", cmp);
     if (cmp<0 && parcours->filsG){
@@ -44,13 +45,15 @@ struct noeud* inserer(char *motfr, char *moteng, struct noeud* lexique){
       //printf("going to the right\n");
       parcours = parcours->filsD;
     }else if (!parcours->filsG){
+      inserted = 1;
       parcours->filsG=newnoeud;
     }else if (!parcours->filsD){
+      inserted = 1;
       parcours->filsD=newnoeud;
     }
     cmp=strcmp(motfr,parcours->motfr);
   }
-  if (!cmp)printf("Valeur déjà dans le dictionnaire\n");
+  if (!inserted)printf("Valeur déjà dans le dictionnaire\n");
   //printf("\n");
 
   return lexique;
@@ -76,4 +79,53 @@ noeud* getLexique(char *filepath){
   }
   fclose(fp);
   return racine;
+}
+
+int size(noeud* node){
+  if (node==NULL)
+    return 0;
+  else
+    return(size(node->filsG) + 1 + size(node->filsD));
+}
+
+void treeToVine(noeud *root){
+  //Convertir un arbre en vigne, cad une liste chainée triée
+  //Utiliser les bons pointeurs pour pointer le prochain noeud sur la liste
+  noeud *temp = NULL;
+  noeud *tail = root;
+  noeud *rest = tail->filsD;
+  while (rest!=NULL) {
+    if (rest->filsG == NULL) {
+      tail = rest;
+      rest = rest->filsD;
+    }else{
+      temp = rest->filsG;
+      rest->filsG = temp->filsD;
+      temp->filsD = rest;
+      rest = temp;
+      tail->filsD = temp;
+    }
+  }
+}
+
+void vineToTree(noeud *root, int size){
+  int leaves = size + 1 - pow(2,(log2(size + 1)));
+  compress(root, leaves);
+  size = size - leaves;
+  while (size > 1) {
+    compress(root, (size/2));
+    size = size/2;
+  }
+}
+
+void compress(noeud *root, int count){
+  noeud *child;
+  noeud *scanner = root;
+  for (int i = 1; i < count; i++) {
+    child = scanner->filsD;
+    scanner->filsD = child->filsD;
+    scanner = scanner->filsD;
+    child->filsD = scanner->filsG;
+    scanner->filsG = child;
+  }
 }
