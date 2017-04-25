@@ -2,13 +2,25 @@
 int main(){
   noeud* racine = NULL;
   racine =  getLexique("lexiquefar.txt");
-
+  //parcoursGRD(racine, &affiche);
   noeud* pseudoRacine = malloc(sizeof(noeud));
   pseudoRacine->filsD = racine;
   int tailleArbre = size(racine);
+
+  printf("Size : %d\n", tailleArbre);
+  printf("Depth : %d\n", profondeur(racine));
+  printf("Width : %d\n", largeurmax(racine));
+
   treeToVine(pseudoRacine);
+  printf("treetovine\n");
   vineToTree(pseudoRacine, tailleArbre);
+  printf("vinetotree\n");
   racine = pseudoRacine->filsD;
+
+  printf("Size : %d\n", size(racine));
+  printf("Depth : %d\n", profondeur(racine));
+  printf("Width : %d\n", largeurmax(racine));
+
   free(pseudoRacine);
 
   char saisie[SAISIE_MAX];
