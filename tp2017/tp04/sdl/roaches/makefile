@@ -1,6 +1,6 @@
-CFLAGS=-lSDL -lm -lSDL_mixer -g -Wall -Wconversion
+CFLAGS= -g -Wall -Wconversion
 main.exe: main.o functions.o
-	gcc main.o functions.o $(CFLAGS) -o main.exe
+	gcc main.o functions.o -lSDL -lm -lSDL_mixer -o main.exe
 main.o: main.c header.h
 	gcc $(CFLAGS) -c main.c
 functions.o: functions.c header.h
