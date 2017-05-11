@@ -15,6 +15,11 @@ int main(){
   int deltax;
   int deltay;
 
+  Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024);
+  Mix_Music *musique; //Création du pointeur de type Mix_Music
+  musique = Mix_LoadMUS("appel.mp3"); //Chargement de la musique
+
+
   int nVis;
   int continuer = 1;
   SDL_Event event;
@@ -31,6 +36,7 @@ int main(){
         // Ecart entre clic et coin sup gauche tapis
         deltax = event.button.x - tapis->clip_rect.x;
         deltay = event.button.y - tapis->clip_rect.y;
+        Mix_PlayMusic(musique, 1); //Jouer infiniment la musique : -1
       }
       break;
       case SDL_MOUSEMOTION :
@@ -41,7 +47,7 @@ int main(){
         // Mise à jour position du tapis
         tapis->clip_rect.x = event.button.x - deltax;
         tapis->clip_rect.y = event.button.y - deltay;
-        
+
         if (tapis->clip_rect.x<0) tapis->clip_rect.x = 0;
         if (tapis->clip_rect.y<0) tapis->clip_rect.y = 0;
         if ((tapis->clip_rect.x+tapis->w)>ecran->w) tapis->clip_rect.x = ecran->clip_rect.w-tapis->w;

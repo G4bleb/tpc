@@ -6,6 +6,7 @@ Programme produit le  par Gabriel LEBIS
 #include <SDL/SDL.h>
 #include <time.h>
 #include <math.h>
+#include <SDL/SDL_mixer.h>
 
 #define ROACH_ORIENTATIONS 24
 #define ROACH_ANGLE 15

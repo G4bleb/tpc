@@ -1,5 +1,5 @@
 CFLAGS=-g -Wall -Wconversion
-exec: main.o functions.o
+main.exe: main.o functions.o
 	gcc main.o functions.o -o main.exe
 main.o: main.c header.h
 	gcc $(CFLAGS) -c main.c
