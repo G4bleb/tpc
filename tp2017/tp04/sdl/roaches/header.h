@@ -47,3 +47,4 @@ int RoachIntersectRect(int x, int y, int rectx, int recty, int rectwidth, int re
 SDL_Surface *LoadImage ( char * img_filename, int x, int y );
 void DrawImage (SDL_Surface *img, SDL_Surface *ecran);
 int MarkHiddenRoaches(Roach *roaches,int nbRoaches,SDL_Surface *rect);
+int PointInRect(int x, int y, int rectx, int recty, int rectwidth, int rectheight);

@@ -92,6 +92,8 @@ int RoachInRect(int x, int y,
     int newX, newY;
     int i;
 
+    if (roach->hidden) return;
+
     newX = roach->x + (int)(roachSpeed * cos (roach->angle) );
     newY = roach->y - (int)(roachSpeed * sin (roach->angle) );
 
@@ -173,7 +175,7 @@ SDL_Surface *LoadImage ( char * img_filename, int x, int y ){
 }
 
 void DrawImage (SDL_Surface *img, SDL_Surface *ecran){
-  SDL_BlitSurface(img , &img->clip_rect, ecran, &img->clip_rect);
+  SDL_BlitSurface(img , NULL, ecran, &img->clip_rect);
 }
 
 /*   Marque les cafards cachés  */
@@ -182,8 +184,7 @@ int MarkHiddenRoaches(Roach *roaches,int nbRoaches,SDL_Surface *rect){
     int nVisible = 0;
 
     for ( i = 0; i < nbRoaches; i++ ) {
-	 if (RoachInRect( roaches[i].x, roaches[i].y, rect->clip_rect.x,
-			rect->clip_rect.y, rect->w, rect->h)) {
+	 if (RoachInRect( roaches[i].x, roaches[i].y, rect->clip_rect.x,rect->clip_rect.y, rect->w, rect->h)) {
 	    roaches[i].hidden = 1;
 	 }
 	 else {
@@ -192,4 +193,14 @@ int MarkHiddenRoaches(Roach *roaches,int nbRoaches,SDL_Surface *rect){
 	 }
     }
     return nVisible;
+}
+
+/*   Teste si le point est dans le rectangle spécifié   */
+int PointInRect(int x, int y, int rectx, int recty, int rectwidth, int rectheight) {
+    if (x < rectx) return 0;
+    if (x > (rectx + rectwidth)) return 0;
+    if (y < recty) return 0;
+    if (y > (recty + rectheight)) return 0;
+
+    return 1;
 }

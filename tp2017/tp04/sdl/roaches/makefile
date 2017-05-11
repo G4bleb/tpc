@@ -1,5 +1,5 @@
 CFLAGS=-lSDL -lm -g -Wall -Wconversion
-main.exe: main.o functions.o
+exec: main.o functions.o
 	gcc main.o functions.o $(CFLAGS) -o main.exe
 main.o: main.c header.h
 	gcc $(CFLAGS) -c main.c
