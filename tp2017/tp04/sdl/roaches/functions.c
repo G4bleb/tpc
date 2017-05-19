@@ -133,7 +133,7 @@ int RoachInRect(int x, int y,
 
   Roach *CreateRoaches(SDL_Surface *ecran, SDL_Surface *sprites, int nbRoach){
     int i;
-    Roach *roaches = malloc(nbRoach*sizeof(Roach));
+    Roach *roaches = (Roach*)malloc(nbRoach*sizeof(Roach));
     for ( i = 0; i < nbRoach; i++ ) {
       roaches[i] = CreateRoach( ecran, sprites);
     }

@@ -6,4 +6,4 @@ main.o: main.c header.h
 functions.o: functions.c header.h
 	gcc $(CFLAGS) -c functions.c
 clean:
-	rm *.o *.exe *.gch
+	rm *.o *.exe

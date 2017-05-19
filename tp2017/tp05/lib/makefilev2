@@ -1,0 +1,3 @@
+#lib statique dans un répertoire quelconque
+truc.exe: main.o libf.a
+	gcc main.o -L. -lf -o truc.exe
