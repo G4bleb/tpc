@@ -60,24 +60,32 @@ void moveRobot(char **grille, Robot *bot){
 
 void step(char **grille, Robot *bot, char mov){
   if (mov=='z') {
-    grille[bot->xpos][bot->ypos]=' ';
-    bot->ypos-=1;
-    grille[bot->xpos][bot->ypos]='X';
+    if (grille[bot->xpos][bot->ypos-1] != 'x') {
+      grille[bot->xpos][bot->ypos]=' ';
+      bot->ypos-=1;
+      grille[bot->xpos][bot->ypos]='X';
+    }
   }
   if (mov=='q') {
-    grille[bot->xpos][bot->ypos]=' ';
-    bot->xpos-=1;
-    grille[bot->xpos][bot->ypos]='X';
+    if (grille[bot->xpos-1][bot->ypos] != 'x') {
+      grille[bot->xpos][bot->ypos]=' ';
+      bot->xpos-=1;
+      grille[bot->xpos][bot->ypos]='X';
+    }
   }
   if (mov=='s') {
-    grille[bot->xpos][bot->ypos]=' ';
-    bot->ypos+=1;
-    grille[bot->xpos][bot->ypos]='X';
+    if (grille[bot->xpos][bot->ypos+1] != 'x') {
+      grille[bot->xpos][bot->ypos]=' ';
+      bot->ypos+=1;
+      grille[bot->xpos][bot->ypos]='X';
+    }
   }
   if (mov=='d') {
-    grille[bot->xpos][bot->ypos]=' ';
-    bot->xpos+=1;
-    grille[bot->xpos][bot->ypos]='X';
+    if (grille[bot->xpos+1][bot->ypos] != 'x') {
+      grille[bot->xpos][bot->ypos]=' ';
+      bot->xpos+=1;
+      grille[bot->xpos][bot->ypos]='X';
+    }
   }
   printf("just moved : x= %d, y= %d\n", bot->xpos, bot->ypos);
 }
