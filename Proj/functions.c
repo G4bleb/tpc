@@ -1,54 +1,84 @@
 #include "header.h"
 
-void initGrid(char grille[X_GRILLE][Y_GRILLE]){
-  for (int y = 0; y < Y_GRILLE; y++) {
-    for (int x = 0; x < X_GRILLE; x++) {
-      grille[x][y]=' ';
+
+char **fileOpen(char *chemin, int *xgrille, int *ygrille){
+  FILE *fp = NULL;
+  if (!(fp = fopen(chemin, "r"))){
+    printf("Erreur d'ouverture du fichier\n");
+    return NULL;
+  }
+  int coordx, coordy;
+
+  fscanf(fp, "%d:%d ", &coordx, &coordy);
+  printf("%d\n", coordx);
+  printf("%d\n", coordy);
+
+  char **grille = malloc((size_t)(coordy)*sizeof(char*));
+  for (int y = 0; y < coordy; y++) {
+    grille[y] = malloc((size_t)(coordx)*sizeof(char));
+    printf("chaine allouée\n");
+  }
+
+  char ligne[LMAX];
+  for (int y = 0; y < coordy; y++) {
+    fgets(ligne, LMAX, fp);
+    for (int x = 0; x < coordx; x++) {
+      //printf("i = %d, j = %d\n", y, x);
+      printf("%c\n", ligne[x]);
+      grille[y][x]=ligne[x];
     }
   }
+
+  fclose(fp);
+  *xgrille=coordx;
+  *ygrille=coordy;
+  printf("Copie terminée\n");
+  return grille;
 }
 
-void displayGrid(char grille[X_GRILLE][Y_GRILLE]){
-  for (int y = 0; y < Y_GRILLE; y++) {
-    for (int x = 0; x < X_GRILLE; x++) {
-      printf("[%c]", grille[x][y]);
+void displayGrid(char **grille, const int xgrille, const int ygrille){
+  for (int y = 0; y < ygrille; y++) {
+    for (int x = 0; x < xgrille; x++) {
+      printf("%c", grille[y][x]);
     }
     printf("\n");
   }
 }
-void movePlayer(char grille[X_GRILLE][Y_GRILLE], int *xpos, int *ypos){
+void movePlayer(char **grille, Robot *bot){
   char mov;
   scanf("%c", &mov);
-  step(grille, xpos, ypos, mov);
-  //if (*xpos>X_GRILLE) {grille[X_GRILLE][*ypos]='X';*xpos=X_GRILLE;}
-  //if (*ypos>Y_GRILLE) {grille[*xpos][Y_GRILLE]='X';*ypos=Y_GRILLE;}
-  if (*xpos<0) {grille[0][*ypos]='X';*xpos=0;}
-  if (*ypos<0) {grille[*xpos][0]='X';*ypos=0;}
+  getchar();
+  step(grille, bot, mov);
+  //if (bot->xpos>X_GRILLE) {grille[X_GRILLE][bot->ypos]='X';bot->xpos=X_GRILLE;}
+  //if (bot->ypos>Y_GRILLE) {grille[bot->xpos][Y_GRILLE]='X';bot->ypos=Y_GRILLE;}
+  //if (bot->xpos<0) {grille[0][bot->ypos]='X';bot->xpos=0;}
+  //if (bot->ypos<0) {grille[bot->xpos][0]='X';bot->ypos=0;}
 }
 
-void moveRobot(char grille[X_GRILLE][Y_GRILLE], int *xpos, int *ypos){
-
+void moveRobot(char **grille, Robot *bot){
+  //step(grille, bot->xpos, bot->ypos, orient)
 }
 
-void step(char grille[X_GRILLE][Y_GRILLE], int *xpos, int *ypos, char mov){
+void step(char **grille, Robot *bot, char mov){
   if (mov=='z') {
-    grille[*xpos][*ypos]=' ';
-    *ypos-=1;
-    grille[*xpos][*ypos]='X';
+    grille[bot->xpos][bot->ypos]=' ';
+    bot->ypos-=1;
+    grille[bot->xpos][bot->ypos]='X';
   }
   if (mov=='q') {
-    grille[*xpos][*ypos]=' ';
-    *xpos-=1;
-    grille[*xpos][*ypos]='X';
+    grille[bot->xpos][bot->ypos]=' ';
+    bot->xpos-=1;
+    grille[bot->xpos][bot->ypos]='X';
   }
   if (mov=='s') {
-    grille[*xpos][*ypos]=' ';
-    *ypos+=1;
-    grille[*xpos][*ypos]='X';
+    grille[bot->xpos][bot->ypos]=' ';
+    bot->ypos+=1;
+    grille[bot->xpos][bot->ypos]='X';
   }
   if (mov=='d') {
-    grille[*xpos][*ypos]=' ';
-    *xpos+=1;
-    grille[*xpos][*ypos]='X';
+    grille[bot->xpos][bot->ypos]=' ';
+    bot->xpos+=1;
+    grille[bot->xpos][bot->ypos]='X';
   }
+  printf("just moved : x= %d, y= %d\n", bot->xpos, bot->ypos);
 }
