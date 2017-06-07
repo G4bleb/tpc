@@ -1,6 +1,5 @@
 #include "header.h"
 
-
 char **fileOpen(char *chemin, int *xgrille, int *ygrille){
   FILE *fp = NULL;
   if (!(fp = fopen(chemin, "r"))){
@@ -13,9 +12,9 @@ char **fileOpen(char *chemin, int *xgrille, int *ygrille){
   printf("%d\n", coordx);
   printf("%d\n", coordy);
 
-  char **grille = malloc((size_t)(coordy)*sizeof(char*));
-  for (int y = 0; y < coordy; y++) {
-    grille[y] = malloc((size_t)(coordx)*sizeof(char));
+  char **grille = malloc((size_t)(coordx)*sizeof(char*));
+  for (int x = 0; x < coordx; x++) {
+    grille[x] = malloc((size_t)(coordy)*sizeof(char));
     printf("chaine allouée\n");
   }
 
@@ -25,7 +24,7 @@ char **fileOpen(char *chemin, int *xgrille, int *ygrille){
     for (int x = 0; x < coordx; x++) {
       //printf("i = %d, j = %d\n", y, x);
       printf("%c\n", ligne[x]);
-      grille[y][x]=ligne[x];
+      grille[x][y]=ligne[x];
     }
   }
 
@@ -39,7 +38,7 @@ char **fileOpen(char *chemin, int *xgrille, int *ygrille){
 void displayGrid(char **grille, const int xgrille, const int ygrille){
   for (int y = 0; y < ygrille; y++) {
     for (int x = 0; x < xgrille; x++) {
-      printf("%c", grille[y][x]);
+      printf("%c", grille[x][y]);
     }
     printf("\n");
   }
