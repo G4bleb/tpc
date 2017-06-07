@@ -1,10 +1,11 @@
 /*
 
-Programme produit le  par Gabriel LEBIS
+Programme démarré le 07/06/17  par Gabriel LEBIS
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <SDL/SDL.h>
 #define X_GRILLE 10
 #define Y_GRILLE 10
 #define LMAX 100
@@ -31,3 +32,7 @@ Robot* startBot(char **grilleconst, const int xgrille, const int ygrille);
 char check(char **grille, Robot *bot, char mov);
 void botRotate(Robot *bot, char rotation);
 char checkWin(char **grille, Robot *bot);
+
+SDL_Surface *init (char * bgFilename, SDL_Surface **pFond);
+SDL_Surface *LoadImage ( char * img_filename, int x, int y );
+void DrawImage (SDL_Surface *img, SDL_Surface *ecran);

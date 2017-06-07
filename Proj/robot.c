@@ -79,11 +79,11 @@ char check(char **grille, Robot *bot, char mov){
 }
 
 void botRotate(Robot *bot, char rotation){
-  if (rotation == 'r') {
+  if (rotation == 'l') {
     bot->orient+=1;
     if (bot->orient == 5) bot->orient = 1;
   }
-  if (rotation == 'l') {
+  if (rotation == 'r') {
     bot->orient-=1;
     if (bot->orient == 0) bot->orient = 4;
   }
@@ -93,7 +93,9 @@ void moveRobot(char **grille, Robot *bot, const int xgrille, const int ygrille){
   int counter = 0;
   char won = 0;
 
-  while(step(grille, bot, bot->orient));
+  while(step(grille, bot, bot->orient)){
+    getchar();
+  }
   botRotate(bot, 'r');
   counter--;
 
@@ -116,7 +118,10 @@ void moveRobot(char **grille, Robot *bot, const int xgrille, const int ygrille){
     }
 
     if (!counter) {
-      while(step(grille, bot, bot->orient));
+      while(step(grille, bot, bot->orient)){
+      getchar(); //TOREMOVE
+      displayGrid(grille, xgrille, ygrille);  //TOREMOVE
+      }
       botRotate(bot, 'r');
       counter--;
     }
