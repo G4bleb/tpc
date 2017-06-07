@@ -1,19 +1,20 @@
 #include "header.h"
 
-int hash(char *cle){ //fct à mettre en place
-	longueur = strlen(cle);
-	for(i=0 ; i < longueur ; i++){
+ int hash(char *cle){ //fct à mettre en place
+	int longueur = (int)strlen(cle);
+	unsigned int hash = 1;
+	for(int i=0 ; i < longueur ; i++){
 		hash = cle[i]+31*hash;
 	}
-	hash=hash%HASHIZE;
+	return hash%HASHSIZE;
 }
 void init(Entree **htab){
-	for(i=0 ; i < HASHSIZE ; i++) {
+	for(int i=0 ; i < HASHSIZE ; i++) {
 		htab[i] = NULL;
 	}
 }
 
-Entree *search(Entree **htab, char *cle) {
+Entree *searchTab(Entree **htab, char *cle) {
 	Entree *element;
 	element = htab[hash(cle)];
 
@@ -28,7 +29,7 @@ Entree *search(Entree **htab, char *cle) {
 
 void add(Entree **htab, char *cle, int val) {
 	Entree *elt; int index;
-	if((elt = search(hab, cle)) == NULL) {
+	if((elt = searchTab(htab, cle)) == NULL) {
 		elt = malloc(sizeof(Entree));
 		elt->key=malloc((strlen(cle)+1)*sizeof(char));
 		strcpy(elt->key, cle);
@@ -39,5 +40,13 @@ void add(Entree **htab, char *cle, int val) {
 	}
 	else {
 		elt->value = val;
+	}
+}
+
+void parcoursTab(Entree **htab) {
+  while(htab){
+    Entree *parcours=*htab;
+		printf("%d\n", parcours->value);
+    htab = parcours->suiv;
 	}
 }
