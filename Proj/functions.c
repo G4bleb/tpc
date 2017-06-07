@@ -15,7 +15,7 @@ char **fileOpen(char *chemin, int *xgrille, int *ygrille){
   char **grille = malloc((size_t)(coordx)*sizeof(char*));
   for (int x = 0; x < coordx; x++) {
     grille[x] = malloc((size_t)(coordy)*sizeof(char));
-    printf("chaine allouée\n");
+    //printf("chaine allouée\n");
   }
 
   char ligne[LMAX];
@@ -23,7 +23,7 @@ char **fileOpen(char *chemin, int *xgrille, int *ygrille){
     fgets(ligne, LMAX, fp);
     for (int x = 0; x < coordx; x++) {
       //printf("i = %d, j = %d\n", y, x);
-      printf("%c\n", ligne[x]);
+      //printf("%c\n", ligne[x]);
       grille[x][y]=ligne[x];
     }
   }
@@ -43,49 +43,14 @@ void displayGrid(char **grille, const int xgrille, const int ygrille){
     printf("\n");
   }
 }
+
 void movePlayer(char **grille, Robot *bot){
   char mov;
   scanf("%c", &mov);
   getchar();
-  step(grille, bot, mov);
+  //step(grille, bot, mov);
   //if (bot->xpos>X_GRILLE) {grille[X_GRILLE][bot->ypos]='X';bot->xpos=X_GRILLE;}
   //if (bot->ypos>Y_GRILLE) {grille[bot->xpos][Y_GRILLE]='X';bot->ypos=Y_GRILLE;}
   //if (bot->xpos<0) {grille[0][bot->ypos]='X';bot->xpos=0;}
   //if (bot->ypos<0) {grille[bot->xpos][0]='X';bot->ypos=0;}
-}
-
-void moveRobot(char **grille, Robot *bot){
-  //step(grille, bot->xpos, bot->ypos, orient)
-}
-
-void step(char **grille, Robot *bot, char mov){
-  if (mov=='z') {
-    if (grille[bot->xpos][bot->ypos-1] != 'x') {
-      grille[bot->xpos][bot->ypos]=' ';
-      bot->ypos-=1;
-      grille[bot->xpos][bot->ypos]='X';
-    }
-  }
-  if (mov=='q') {
-    if (grille[bot->xpos-1][bot->ypos] != 'x') {
-      grille[bot->xpos][bot->ypos]=' ';
-      bot->xpos-=1;
-      grille[bot->xpos][bot->ypos]='X';
-    }
-  }
-  if (mov=='s') {
-    if (grille[bot->xpos][bot->ypos+1] != 'x') {
-      grille[bot->xpos][bot->ypos]=' ';
-      bot->ypos+=1;
-      grille[bot->xpos][bot->ypos]='X';
-    }
-  }
-  if (mov=='d') {
-    if (grille[bot->xpos+1][bot->ypos] != 'x') {
-      grille[bot->xpos][bot->ypos]=' ';
-      bot->xpos+=1;
-      grille[bot->xpos][bot->ypos]='X';
-    }
-  }
-  printf("just moved : x= %d, y= %d\n", bot->xpos, bot->ypos);
 }
