@@ -16,12 +16,14 @@ int main(int argc, char *argv[]){
   Robot *bot = startBot(grille, xgrille, ygrille);
 
   SDL_Surface *floor = NULL;
-  SDL_Surface *ecran = init ("floor.bmp", &floor);
-  //SDL_Surface *mur = LoadImage ( "tree.bmp",	80, 80);
-  SDL_Surface *sprites = LoadSprites ( "tree.bmp" );
+  SDL_Surface *ecran = init ("floorTile.bmp", &floor, xgrille, ygrille);
+  //SDL_Surface *mur = loadImage ( "tree.bmp",	80, 80);
+  SDL_Surface *wall = loadSprites ("wall.bmp");
   SDL_BlitSurface(floor,NULL, ecran,NULL);
-  //DrawImage ( mur, ecran );
-  DrawImage ( sprites, ecran );
+  //drawImage ( wall, ecran );
+  drawWalls(wall, ecran, grille, xgrille, ygrille);
+
+  //SDL_Surface *bot = loadSprites("botSprites.bmp");
 
   int continuer = 1;
   SDL_Event event;
@@ -32,13 +34,14 @@ int main(int argc, char *argv[]){
       continuer = 0;
       break;
     }
-    SDL_Flip(ecran);
+    //SDL_Flip(ecran);
   }
 }
 SDL_Quit();
 displayGrid(grille, xgrille, ygrille);
 moveRobot(grille, bot, xgrille, ygrille);
 
-printf("Over !\n");
+printf("Over ! : Steps = %d\n", bot->steps);
+free(grille);
 return 0;
 }

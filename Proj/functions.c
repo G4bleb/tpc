@@ -43,14 +43,3 @@ void displayGrid(char **grille, const int xgrille, const int ygrille){
     printf("\n");
   }
 }
-
-void movePlayer(char **grille, Robot *bot){
-  char mov;
-  scanf("%c", &mov);
-  getchar();
-  //step(grille, bot, mov);
-  //if (bot->xpos>X_GRILLE) {grille[X_GRILLE][bot->ypos]='X';bot->xpos=X_GRILLE;}
-  //if (bot->ypos>Y_GRILLE) {grille[bot->xpos][Y_GRILLE]='X';bot->ypos=Y_GRILLE;}
-  //if (bot->xpos<0) {grille[0][bot->ypos]='X';bot->xpos=0;}
-  //if (bot->ypos<0) {grille[bot->xpos][0]='X';bot->ypos=0;}
-}
