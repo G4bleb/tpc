@@ -112,9 +112,8 @@ void moveRobot(char **grille, Robot *bot, Graph *surfaces,const int xgrille, con
   while (!won) {
     //displayGrid(grille, xgrille, ygrille);
     //drawBot(ecran, bot, botSprites);
-    SDL_Delay(250);
+    SDL_Delay(100);
     drawWindow(surfaces, bot, grille, xgrille, ygrille);
-    printf("Bot moved\n");
     printf("Counter = %d, Steps = %d\n",counter, bot->steps);
     //getchar(); TOREMOVE
     won = checkWin(grille, bot);
@@ -134,18 +133,16 @@ void moveRobot(char **grille, Robot *bot, Graph *surfaces,const int xgrille, con
     if (!counter) {
       while(step(grille, bot)){
       //getchar(); //TOREMOVE
-      SDL_Delay(250);
+      SDL_Delay(100);
       //displayGrid(grille, xgrille, ygrille);  //TOREMOVE
       drawWindow(surfaces, bot, grille, xgrille, ygrille);
       //drawBot(ecran, bot, botSprites);
-      printf("Bot moved\n");
       }
       botRotate(bot, 'r');
       counter--;
     }
   }
   //displayGrid(grille, xgrille, ygrille);
-  printf("Robot x=%d, y=%d\n", bot->xpos, bot->ypos);
 }
 
 char checkWin(char **grille, Robot *bot){

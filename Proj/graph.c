@@ -80,8 +80,8 @@ void drawBot(SDL_Surface *ecran, Robot *bot, SDL_Surface *botSprites){
   rect_src.w = BOT_WIDTH;
   rect_src.h = BOT_HEIGHT;
   //printf("%d\n", rect_src.w);
-  rect_dest.x = (Sint16)(bot->xpos*BOT_WIDTH);
-  rect_dest.y = (Sint16)(bot->ypos*BOT_HEIGHT);
+  rect_dest.x = (Sint16)(bot->xpos*WALL_SIZE);
+  rect_dest.y = (Sint16)((bot->ypos*WALL_SIZE)-WALL_SIZE/2);
   SDL_BlitSurface(botSprites, &rect_src, ecran, &rect_dest);
   SDL_Flip(ecran);
 }
