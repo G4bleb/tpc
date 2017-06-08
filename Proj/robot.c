@@ -5,10 +5,6 @@ Robot* startBot(char **grille, const int xgrille, const int ygrille){
   Robot *bot= malloc(sizeof(Robot));
   bot->orient=BOT_START;
   bot->steps=0;
-  bot->haut=0;
-  bot->gauche=0;
-  bot->bas=0;
-  bot->droite=0;
   int x = 0, y = 0;
   char botPlaced =0;
   for (y = 0; (y < ygrille) && (!botPlaced); y++) {
@@ -91,30 +87,36 @@ char check(char **grille, Robot *bot){
 void botRotate(Robot *bot, char rotation){
   switch (rotation) {
     case 'l':
-      bot->orient+=1;
+      bot->orient++;
       if (bot->orient == 5) bot->orient = 1;
     break;
     case 'r':
-      bot->orient-=1;
+      bot->orient--;
       if (bot->orient == 0) bot->orient = 4;
     break;
   }
 }
 
-void moveRobot(char **grille, Robot *bot, const int xgrille, const int ygrille){
+void moveRobot(char **grille, Robot *bot, Graph *surfaces,const int xgrille, const int ygrille){
   int counter = 0;
   char won = 0;
-
+  printf("yoyo\n");
   while(step(grille, bot)){
-    getchar();
+    //getchar();
+    SDL_Delay(250);
+    drawWindow(surfaces, bot, grille, xgrille, ygrille);
   }
   botRotate(bot, 'r');
   counter--;
 
   while (!won) {
-    displayGrid(grille, xgrille, ygrille);
+    //displayGrid(grille, xgrille, ygrille);
+    //drawBot(ecran, bot, botSprites);
+    SDL_Delay(250);
+    drawWindow(surfaces, bot, grille, xgrille, ygrille);
+    printf("Bot moved\n");
     printf("Counter = %d, Steps = %d\n",counter, bot->steps);
-    getchar();
+    //getchar(); TOREMOVE
     won = checkWin(grille, bot);
     botRotate(bot, 'l'); //Mur à gauche
     if (!check(grille, bot)){ //Mur à gauche
@@ -131,14 +133,19 @@ void moveRobot(char **grille, Robot *bot, const int xgrille, const int ygrille){
 
     if (!counter) {
       while(step(grille, bot)){
-      getchar(); //TOREMOVE
-      displayGrid(grille, xgrille, ygrille);  //TOREMOVE
+      //getchar(); //TOREMOVE
+      SDL_Delay(250);
+      //displayGrid(grille, xgrille, ygrille);  //TOREMOVE
+      drawWindow(surfaces, bot, grille, xgrille, ygrille);
+      //drawBot(ecran, bot, botSprites);
+      printf("Bot moved\n");
       }
       botRotate(bot, 'r');
       counter--;
     }
   }
-  displayGrid(grille, xgrille, ygrille);
+  //displayGrid(grille, xgrille, ygrille);
+  printf("Robot x=%d, y=%d\n", bot->xpos, bot->ypos);
 }
 
 char checkWin(char **grille, Robot *bot){

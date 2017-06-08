@@ -1,4 +1,4 @@
-int **initMatrice(char **grille, Robot *bot, const int xgrille, const int ygrille){
+int **initMatrice(char **grille, Robot *bot, const int coordx, const int coordy){
   int **mat = malloc((size_t)(coordx)*sizeof(int*));
   for (int x = 0; x < coordx; x++) {
     mat[x] = malloc((size_t)(coordy)*sizeof(int));
@@ -6,7 +6,11 @@ int **initMatrice(char **grille, Robot *bot, const int xgrille, const int ygrill
   }
   for (int y = 0; y < coordy; y++) {
     for (int x = 0; x < coordx; x++) {
-      mat[x][y]=0;
+      if (grille[x][y]=='x') {
+        mat[x][y]=2147483647;
+      }else{
+        mat[x][y]=0;
+      }
     }
   }
   return mat;
@@ -26,9 +30,11 @@ void moveRobot(char **grille, Robot *bot, const int xgrille, const int ygrille){
       if(check(grille, bot))increMat(grille, bot, mat);
       botRotate(bot, 'r');
     }
-
+    while (bot->orient != lesserDirValue(bot)) {
+      botRotate(bot, 'r');
+    }
+    step(grille, bot);
   }
-
   displayGrid(grille, xgrille, ygrille);
 }
 
@@ -51,4 +57,22 @@ void increMat(char **grille, Robot *bot, int **mat){
       bot->droite=mat[bot->xpos+1][bot->ypos];
     break;
   }
+}
+
+int lesserDirValue(Robot *bot){
+  int i = 1;
+  int lesservalue = bot->haut;
+  if (lesservalue < bot->gauche) {
+    lesservalue=bot->gauche;
+    i=2;
+  }
+  if (lesservalue < bot->bas) {
+    lesservalue=bot->bas;
+    i=3;
+  }
+  if (lesservalue < bot->droite) {
+    lesservalue=bot->droite;
+    i=4;
+  }
+  return i;
 }

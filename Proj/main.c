@@ -11,20 +11,15 @@ int main(int argc, char *argv[]){
     printf("Erreur de traitement du fichier\n");
     return -1;
   }
-
   printf("Creating bot\n");
   Robot *bot = startBot(grille, xgrille, ygrille);
+  printf("bot->xpos = %d, bot->ypos = %d\n", bot->xpos, bot->ypos);
 
-  SDL_Surface *floor = NULL;
-  SDL_Surface *ecran = init ("floorTile.bmp", &floor, xgrille, ygrille);
-  //SDL_Surface *mur = loadImage ( "tree.bmp",	80, 80);
-  SDL_Surface *wall = loadSprites ("wall.bmp");
-  SDL_BlitSurface(floor,NULL, ecran,NULL);
-  //drawImage ( wall, ecran );
-  drawWalls(wall, ecran, grille, xgrille, ygrille);
+  Graph *surfaces = initSDL("floorTile.bmp","wall.bmp", "bot.bmp", grille, xgrille, ygrille);
 
-  //SDL_Surface *bot = loadSprites("botSprites.bmp");
-
+  drawBot(surfaces->ecran, bot, surfaces->botSprites);
+  moveRobot(grille, bot, surfaces, xgrille, ygrille);
+/*
   int continuer = 1;
   SDL_Event event;
   while (continuer) {
@@ -34,12 +29,13 @@ int main(int argc, char *argv[]){
       continuer = 0;
       break;
     }
-    //SDL_Flip(ecran);
+    SDL_Flip(ecran);
   }
-}
+}*/
 SDL_Quit();
-displayGrid(grille, xgrille, ygrille);
-moveRobot(grille, bot, xgrille, ygrille);
+//displayGrid(grille, xgrille, ygrille);
+//moveRobot(grille, bot, xgrille, ygrille);
+//moveRobot(grille, bot, ecran, botSprites);
 
 printf("Over ! : Steps = %d\n", bot->steps);
 free(grille);
