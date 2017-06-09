@@ -1,15 +1,15 @@
 #include "header.h"
 
 
-Robot* startBot(char **grille, const int xgrille, const int ygrille){
+Robot* startBot(char **grid, const int xgrid, const int ygrid){
   Robot *bot= malloc(sizeof(Robot));
   bot->orient=BOT_START;
   bot->steps=0;
   int x = 0, y = 0;
   char botPlaced =0;
-  for (y = 0; (y < ygrille) && (!botPlaced); y++) {
-    for (x = 0; (x < xgrille) && (!botPlaced); x++) {
-      if (grille[x][y] == 'D') {
+  for (y = 0; (y < ygrid) && (!botPlaced); y++) {
+    for (x = 0; (x < xgrid) && (!botPlaced); x++) {
+      if (grid[x][y] == 'D') {
         bot->xpos = x;
         bot->ypos = y;
         botPlaced = 1;
@@ -20,44 +20,51 @@ Robot* startBot(char **grille, const int xgrille, const int ygrille){
     printf("Erreur de placement du Robot\n");
     return NULL;
   }
-  grille[bot->xpos][bot->ypos]='&';
+  grid[bot->xpos][bot->ypos]='&';
   return bot;
 }
 
-char step(char **grille, Robot *bot){
+char step(char **grid, Robot *bot, Graph *surfaces){
   switch (bot->orient) {
     case 1: //Z
-      if (check(grille, bot)) {
-        grille[bot->xpos][bot->ypos]=' ';
+      if (check(grid, bot)) {
+        reDrawAround(surfaces, bot, grid);
+        grid[bot->xpos][bot->ypos]=' ';
         bot->ypos-=1;
-        grille[bot->xpos][bot->ypos]='&';
+        grid[bot->xpos][bot->ypos]='&';
         bot->steps++;
         return 1;
       }
     break;
     case 2: //Q
-      if (check(grille, bot)) {
-        grille[bot->xpos][bot->ypos]=' ';
+      if (check(grid, bot)) {
+        reDrawAround(surfaces, bot, grid);
+        grid[bot->xpos][bot->ypos]=' ';
         bot->xpos-=1;
-        grille[bot->xpos][bot->ypos]='&';
+        grid[bot->xpos][bot->ypos]='&';
+        drawBot(surfaces->screen, bot, surfaces->botSprites);
         bot->steps++;
         return 2;
       }
     break;
     case 3: //S
-      if (check(grille, bot)) {
-        grille[bot->xpos][bot->ypos]=' ';
+      if (check(grid, bot)) {
+        reDrawAround(surfaces, bot, grid);
+        grid[bot->xpos][bot->ypos]=' ';
         bot->ypos+=1;
-        grille[bot->xpos][bot->ypos]='&';
+        grid[bot->xpos][bot->ypos]='&';
+        drawBot(surfaces->screen, bot, surfaces->botSprites);
         bot->steps++;
         return 3;
       }
       break;
       case 4: //D
-      if (check(grille, bot)) {
-        grille[bot->xpos][bot->ypos]=' ';
+      if (check(grid, bot)) {
+        reDrawAround(surfaces, bot, grid);
+        grid[bot->xpos][bot->ypos]=' ';
         bot->xpos+=1;
-        grille[bot->xpos][bot->ypos]='&';
+        grid[bot->xpos][bot->ypos]='&';
+        drawBot(surfaces->screen, bot, surfaces->botSprites);
         bot->steps++;
         return 4;
       }
@@ -66,19 +73,19 @@ char step(char **grille, Robot *bot){
   return 0;
 }
 
-char check(char **grille, Robot *bot){
+char check(char **grid, Robot *bot){
   switch (bot->orient) {
     case 1: //Z
-      if (grille[bot->xpos][bot->ypos-1] != 'x') return 1;
+      if (grid[bot->xpos][bot->ypos-1] != 'x') return 1;
     break;
     case 2: //Q
-      if (grille[bot->xpos-1][bot->ypos] != 'x') return 1;
+      if (grid[bot->xpos-1][bot->ypos] != 'x') return 1;
     break;
     case 3: //S
-      if (grille[bot->xpos][bot->ypos+1] != 'x') return 1;
+      if (grid[bot->xpos][bot->ypos+1] != 'x') return 1;
     break;
     case 4: //D
-      if (grille[bot->xpos+1][bot->ypos] != 'x') return 1;
+      if (grid[bot->xpos+1][bot->ypos] != 'x') return 1;
     break;
   }
   return 0;
@@ -97,56 +104,41 @@ void botRotate(Robot *bot, char rotation){
   }
 }
 
-void moveRobot(char **grille, Robot *bot, Graph *surfaces,const int xgrille, const int ygrille){
-  int counter = 0;
-  char won = 0;
-  printf("yoyo\n");
-  while(step(grille, bot)){
-    //getchar();
-    SDL_Delay(250);
-    drawWindow(surfaces, bot, grille, xgrille, ygrille);
-  }
-  botRotate(bot, 'r');
-  counter--;
-
-  while (!won) {
-    //displayGrid(grille, xgrille, ygrille);
-    //drawBot(ecran, bot, botSprites);
-    SDL_Delay(100);
-    drawWindow(surfaces, bot, grille, xgrille, ygrille);
-    printf("Counter = %d, Steps = %d\n",counter, bot->steps);
-    //getchar(); TOREMOVE
-    won = checkWin(grille, bot);
-    botRotate(bot, 'l'); //Mur à gauche
-    if (!check(grille, bot)){ //Mur à gauche
+char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped, const char graphMode){
+  int counter = *count;
+  char won = checkWin(grid, bot);
+  if(!won && (*firstStepped)) {
+    botRotate(bot, 'l'); //Mur à gauche ?
+    if (!check(grid, bot)){ //Mur à gauche ?
       botRotate(bot, 'r');
-      if(!step(grille, bot)){// Peut avancer, mur à gauche : Avancer
+      if(!step(grid, bot, surfaces)){// Peut avancer, mur à gauche : Avancer
         botRotate(bot, 'r');//Peut pas go, mur à gauche
         counter--;
-        step(grille, bot);
+        step(grid, bot, surfaces);
       }
     }else{ //Pas de mur à gauche
       counter++;
-      step(grille, bot);
+      step(grid, bot, surfaces);
     }
-
-    if (!counter) {
-      while(step(grille, bot)){
-      //getchar(); //TOREMOVE
-      SDL_Delay(100);
-      //displayGrid(grille, xgrille, ygrille);  //TOREMOVE
-      drawWindow(surfaces, bot, grille, xgrille, ygrille);
-      //drawBot(ecran, bot, botSprites);
-      }
+  drawMove(graphMode, surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
+  }
+  if ((!counter || !(*firstStepped)) && !won) {
+    if(step(grid, bot, surfaces)){
+    }else{
       botRotate(bot, 'r');
       counter--;
+      *firstStepped=1;
+      printf("did a firstStep\n");
     }
+    drawMove(graphMode, surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
   }
-  //displayGrid(grille, xgrille, ygrille);
+  *count = counter;
+  //printf("counter = %d\n", counter);
+  return won;
 }
 
-char checkWin(char **grille, Robot *bot){
-  if (grille[bot->xpos][bot->ypos+1] == 'S' || grille[bot->xpos][bot->ypos-1] == 'S' || grille[bot->xpos+1][bot->ypos+1] == 'S' || grille[bot->xpos-1][bot->ypos+1] == 'S') {
+char checkWin(char **grid, Robot *bot){
+  if (grid[bot->xpos][bot->ypos+1] == 'S' || grid[bot->xpos][bot->ypos-1] == 'S' || grid[bot->xpos+1][bot->ypos+1] == 'S' || grid[bot->xpos-1][bot->ypos+1] == 'S') {
     return 1;
   }
   return 0;
