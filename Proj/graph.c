@@ -126,7 +126,7 @@ void reDrawAround(Graph *surfaces, Robot *bot, char **grid){
       reDraw(surfaces, grid, bot->oldx+1, bot->oldy+1);
 }
 
-void reDraw(Graph *surfaces, char **grid, int x, int y){
+void reDraw(Graph *surfaces, char **grid, const int x, const int y){
   surfaces->fond = setSurfaceCoords(surfaces->fond, x*FLOOR_SIZE, y*FLOOR_SIZE);
   drawImage(surfaces->fond, surfaces->screen);
   if (grid[x][y]=='x') {

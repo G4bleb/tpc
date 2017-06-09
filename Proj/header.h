@@ -32,6 +32,7 @@ typedef struct{
 
 char **fileOpen(char *chemin, int *xgrid, int *ygrid);
 void displayGrid(char **grid, const int xgrid, const int ygrid);
+
 char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped);
 char step(char **grid, Robot *bot);
 Robot* startBot(char **gridconst, const int xgrid, const int ygrid);
@@ -50,6 +51,6 @@ void drawBot(SDL_Surface *screen, Robot *bot, SDL_Surface *botSurf);
 void drawExit(SDL_Surface *exit, SDL_Surface *screen, char **grid, const int xgrid, const int ygrid);
 void drawWon(SDL_Surface *exit, SDL_Surface *won, SDL_Surface *screen);
 void reDrawAround(Graph *surfaces, Robot *bot, char **grid);
-void reDraw(Graph *surfaces, char **grid, int x, int y);
+void reDraw(Graph *surfaces, char **grid, const int x, const int y);
 void drawMove(Graph *surfaces, Robot *bot, char **grid, const int xgrid, const int ygrid, int counter, int steps);
 char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const int ygrid);
