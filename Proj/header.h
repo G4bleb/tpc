@@ -26,7 +26,7 @@ typedef struct{
 
 typedef struct{
   char enabled;
-  SDL_Surface* screen, *floorTile, *wall, *exit, *botSprites, *fond;
+  SDL_Surface* screen, *floorTile, *wall, *exit, *won, *botSprites, *fond;
 }Graph;
 
 
@@ -39,7 +39,7 @@ char check(char **grid, Robot *bot);
 void botRotate(Robot *bot, char rotation);
 char checkWin(char **grid, Robot *bot);
 
-Graph *initGraphics(char * bgFilename, char *wallFilename, char *botFilename, char *exitFilename, char **grid, const int xgrid, const int ygrid);
+Graph *initGraphics(char * bgFilename, char *wallFilename, char *botFilename, char *exitFilename,char *wonFilename, char **grid, const int xgrid, const int ygrid);
 SDL_Surface *init (char * bgFilename, SDL_Surface **pFond,const int xgrid, const int ygrid);
 SDL_Surface *setSurfaceCoords ( SDL_Surface * img, int x, int y );
 void drawImage (SDL_Surface *img, SDL_Surface *screen);
@@ -48,6 +48,7 @@ void drawBackground(SDL_Surface *floorTile, SDL_Surface *screen, const int xgrid
 void drawWalls(SDL_Surface *wall, SDL_Surface *screen, char **grid, const int xgrid, const int ygrid);
 void drawBot(SDL_Surface *screen, Robot *bot, SDL_Surface *botSurf);
 void drawExit(SDL_Surface *exit, SDL_Surface *screen, char **grid, const int xgrid, const int ygrid);
+void drawWon(SDL_Surface *exit, SDL_Surface *won, SDL_Surface *screen);
 void reDrawAround(Graph *surfaces, Robot *bot, char **grid);
 void reDraw(Graph *surfaces, char **grid, int x, int y);
 void drawMove(Graph *surfaces, Robot *bot, char **grid, const int xgrid, const int ygrid, int counter, int steps);

@@ -119,21 +119,16 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const i
       step(grid, bot);
     }
   drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
-  bot->oldx = bot->xpos;
-  bot->oldy = bot->ypos;
   }
   if ((!counter || !(*firstStepped)) && !won) {
     if(step(grid, bot)){
     }else{
       botRotate(bot, 'r');
       counter--;
-
       *firstStepped=1;
       //printf("did a firstStep\n");
     }
     drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
-    bot->oldx = bot->xpos;
-    bot->oldy = bot->ypos;
   }
   *count = counter;
   //printf("counter = %d\n", counter);

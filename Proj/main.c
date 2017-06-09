@@ -16,10 +16,12 @@ int main(int argc, char *argv[]){
   Robot *bot = startBot(grid, xgrid, ygrid);
   printf("bot->xpos = %d, bot->ypos = %d\n", bot->xpos, bot->ypos);
   Graph * surfaces = NULL;
-  if((char)atoi(argv[2]))surfaces = initGraphics("floorTile.bmp","wall.bmp", "bot.bmp", "exit.bmp", grid, xgrid, ygrid);
+  if((char)atoi(argv[2]))surfaces = initGraphics("floorTile.bmp","wall.bmp", "bot.bmp", "exit.bmp", "won.bmp", grid, xgrid, ygrid);
   char won = graphicLoop(grid, bot, surfaces, xgrid, ygrid);
   if (won) {
     printf("Got out ! : Steps = %d\n", bot->steps);
+  }else{
+    printf("Got lost ! : Steps = %d\n", bot->steps);
   }
   free(grid);
   return 0;
