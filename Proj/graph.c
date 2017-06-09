@@ -1,13 +1,18 @@
 #include "header.h"
 
-Graph *initGraphics(char * bgFilename, char *wallFilename, char *botFilename, char *exitFilename, char **grid, const int xgrid, const int ygrid){
+Graph *initGraphics(char * bgFilename, char *wallFilename, char *botFilename, char *exitFilename,char *wonFilename, char **grid, const int xgrid, const int ygrid){
   Graph *surfaces = malloc(sizeof(Graph));
   surfaces->fond = NULL;
   surfaces->screen = init (bgFilename, &surfaces->fond, xgrid, ygrid);
   surfaces->wall = loadSprites (wallFilename);
   surfaces->exit = SDL_LoadBMP(exitFilename);
+  surfaces->won = SDL_LoadBMP(wonFilename);
   if (!surfaces->exit) {
     fprintf(stderr, "Impossible de charger le fichier %s : %s\n", exitFilename, SDL_GetError());
+    exit(EXIT_FAILURE);
+  }
+  if (!surfaces->won) {
+    fprintf(stderr, "Impossible de charger le fichier %s : %s\n", wonFilename, SDL_GetError());
     exit(EXIT_FAILURE);
   }
   SDL_BlitSurface(surfaces->fond,NULL, surfaces->screen,NULL);
@@ -26,16 +31,14 @@ SDL_Surface *init (char * bgFilename, SDL_Surface **pFond, const int xgrid, cons
     exit(EXIT_FAILURE);
   }
   SDL_Surface *screen;
-
   screen = SDL_SetVideoMode(xgrid*WALL_SIZE, ygrid*WALL_SIZE, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
   if (!screen) {
     fprintf(stderr, "Erreur : %s\n",SDL_GetError());
     exit(EXIT_FAILURE);
   }
-
   drawBackground(fond, screen, xgrid, ygrid);
-  //drawImage (fond, screen);
   SDL_Flip(screen);
+  SDL_WM_SetCaption("Labyrinth Solver", NULL);//On nomme la fenêtre
   *pFond = fond;
   return screen;
 }
@@ -143,6 +146,8 @@ void drawMove(Graph *surfaces, Robot *bot, char **grid, const int xgrid, const i
     drawBot(surfaces->screen, bot, surfaces->botSprites);
     SDL_Flip(surfaces->screen);
   }
+  bot->oldx = bot->xpos;
+  bot->oldy = bot->ypos;
   SDL_Delay(DELAY);
   //printf("Drawn move, mode : %d\n", graphMode);
 }
@@ -152,6 +157,7 @@ char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, cons
   char firstStepped = 0;
   char over = 0;
   char won=0;
+  char once=1;
   SDL_Event event;
   while (!over) {
     while ( SDL_PollEvent ( &event ) ) { // tant qu'il y a un évènement
@@ -161,9 +167,25 @@ char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, cons
         break;
       }
     }
-    printf("won = %d\n", won);
-    if(!won) won = moveRobot(grid, bot, surfaces, xgrid, ygrid, &counter, &firstStepped);
+    //printf("won = %d\n", won);
+    if(!won) {
+      won = moveRobot(grid, bot, surfaces, xgrid, ygrid, &counter, &firstStepped);
+    }else if(once){
+      step(grid, bot);
+      drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
+      if(surfaces){
+        drawWon(surfaces->exit, surfaces->won, surfaces->screen);
+      }else{
+        over=1;
+      }
+      once = 0;
+    }
   }
   SDL_Quit();
   return won;
+}
+void drawWon(SDL_Surface *exit, SDL_Surface *won, SDL_Surface *screen){
+  won = setSurfaceCoords(won, exit->clip_rect.x, exit->clip_rect.y);
+  drawImage(won, screen);
+  SDL_Flip(screen);
 }
