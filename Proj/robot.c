@@ -24,11 +24,12 @@ Robot* startBot(char **grid, const int xgrid, const int ygrid){
   return bot;
 }
 
-char step(char **grid, Robot *bot, Graph *surfaces){
+char step(char **grid, Robot *bot){
+  bot->oldx = bot->xpos;
+  bot->oldy = bot->ypos;
   switch (bot->orient) {
     case 1: //Z
       if (check(grid, bot)) {
-        reDrawAround(surfaces, bot, grid);
         grid[bot->xpos][bot->ypos]=' ';
         bot->ypos-=1;
         grid[bot->xpos][bot->ypos]='&';
@@ -38,33 +39,27 @@ char step(char **grid, Robot *bot, Graph *surfaces){
     break;
     case 2: //Q
       if (check(grid, bot)) {
-        reDrawAround(surfaces, bot, grid);
         grid[bot->xpos][bot->ypos]=' ';
         bot->xpos-=1;
         grid[bot->xpos][bot->ypos]='&';
-        drawBot(surfaces->screen, bot, surfaces->botSprites);
         bot->steps++;
         return 2;
       }
     break;
     case 3: //S
       if (check(grid, bot)) {
-        reDrawAround(surfaces, bot, grid);
         grid[bot->xpos][bot->ypos]=' ';
         bot->ypos+=1;
         grid[bot->xpos][bot->ypos]='&';
-        drawBot(surfaces->screen, bot, surfaces->botSprites);
         bot->steps++;
         return 3;
       }
       break;
       case 4: //D
       if (check(grid, bot)) {
-        reDrawAround(surfaces, bot, grid);
         grid[bot->xpos][bot->ypos]=' ';
         bot->xpos+=1;
         grid[bot->xpos][bot->ypos]='&';
-        drawBot(surfaces->screen, bot, surfaces->botSprites);
         bot->steps++;
         return 4;
       }
@@ -104,33 +99,41 @@ void botRotate(Robot *bot, char rotation){
   }
 }
 
-char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped, const char graphMode){
+char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped){
   int counter = *count;
   char won = checkWin(grid, bot);
   if(!won && (*firstStepped)) {
+    if (rand()%MAX_RAND && bot->steps>RANDOM_START) {
+      botRotate(bot, 'r');
+    }
     botRotate(bot, 'l'); //Mur à gauche ?
     if (!check(grid, bot)){ //Mur à gauche ?
       botRotate(bot, 'r');
-      if(!step(grid, bot, surfaces)){// Peut avancer, mur à gauche : Avancer
+      if(!step(grid, bot)){// Peut avancer, mur à gauche : Avancer
         botRotate(bot, 'r');//Peut pas go, mur à gauche
         counter--;
-        step(grid, bot, surfaces);
+        step(grid, bot);
       }
     }else{ //Pas de mur à gauche
       counter++;
-      step(grid, bot, surfaces);
+      step(grid, bot);
     }
-  drawMove(graphMode, surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
+  drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
+  bot->oldx = bot->xpos;
+  bot->oldy = bot->ypos;
   }
   if ((!counter || !(*firstStepped)) && !won) {
-    if(step(grid, bot, surfaces)){
+    if(step(grid, bot)){
     }else{
       botRotate(bot, 'r');
       counter--;
+
       *firstStepped=1;
-      printf("did a firstStep\n");
+      //printf("did a firstStep\n");
     }
-    drawMove(graphMode, surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
+    drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
+    bot->oldx = bot->xpos;
+    bot->oldy = bot->ypos;
   }
   *count = counter;
   //printf("counter = %d\n", counter);

@@ -111,16 +111,16 @@ void drawBot(SDL_Surface *screen, Robot *bot, SDL_Surface *botSprites){
 }
 
 void reDrawAround(Graph *surfaces, Robot *bot, char **grid){
-      surfaces->fond = setSurfaceCoords(surfaces->fond, (bot->xpos)*FLOOR_SIZE, (bot->ypos)*FLOOR_SIZE);
+      surfaces->fond = setSurfaceCoords(surfaces->fond, (bot->oldx)*FLOOR_SIZE, (bot->oldy)*FLOOR_SIZE);
       drawImage(surfaces->fond, surfaces->screen);
-      reDraw(surfaces, grid, bot->xpos, bot->ypos-1);
-      reDraw(surfaces, grid, bot->xpos, bot->ypos+1);
-      reDraw(surfaces, grid, bot->xpos-1, bot->ypos);
-      reDraw(surfaces, grid, bot->xpos+1, bot->ypos);
-      reDraw(surfaces, grid, bot->xpos+1, bot->ypos-1);
-      reDraw(surfaces, grid, bot->xpos-1, bot->ypos+1);
-      reDraw(surfaces, grid, bot->xpos-1, bot->ypos-1);
-      reDraw(surfaces, grid, bot->xpos+1, bot->ypos+1);
+      reDraw(surfaces, grid, bot->oldx, bot->oldy-1); //Le sprite dépasse dans les 8 directions
+      reDraw(surfaces, grid, bot->oldx, bot->oldy+1);
+      reDraw(surfaces, grid, bot->oldx-1, bot->oldy);
+      reDraw(surfaces, grid, bot->oldx+1, bot->oldy);
+      reDraw(surfaces, grid, bot->oldx+1, bot->oldy-1);
+      reDraw(surfaces, grid, bot->oldx-1, bot->oldy+1);
+      reDraw(surfaces, grid, bot->oldx-1, bot->oldy-1);
+      reDraw(surfaces, grid, bot->oldx+1, bot->oldy+1);
 }
 
 void reDraw(Graph *surfaces, char **grid, int x, int y){
@@ -134,19 +134,20 @@ void reDraw(Graph *surfaces, char **grid, int x, int y){
   }
 }
 
-void drawMove(const char graphMode, Graph *surfaces, Robot *bot, char **grid, const int xgrid, const int ygrid, int counter, int steps){
-  if (!graphMode) {
+void drawMove(Graph *surfaces, Robot *bot, char **grid, const int xgrid, const int ygrid, int counter, int steps){
+  if (!surfaces) {
     displayGrid(grid, xgrid, ygrid);
     printf("Counter = %d, Steps = %d\n",counter, steps);
   }else{
-    //reDrawAround(surfaces, bot, grid);
+    reDrawAround(surfaces, bot, grid);
     drawBot(surfaces->screen, bot, surfaces->botSprites);
     SDL_Flip(surfaces->screen);
   }
   SDL_Delay(DELAY);
+  //printf("Drawn move, mode : %d\n", graphMode);
 }
 
-char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const int ygrid, char graphMode){
+char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const int ygrid){
   int counter = 0;
   char firstStepped = 0;
   char over = 0;
@@ -160,7 +161,8 @@ char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, cons
         break;
       }
     }
-    if(!won) won = moveRobot(grid, bot, surfaces, xgrid, ygrid, &counter, &firstStepped, graphMode);
+    printf("won = %d\n", won);
+    if(!won) won = moveRobot(grid, bot, surfaces, xgrid, ygrid, &counter, &firstStepped);
   }
   SDL_Quit();
   return won;

@@ -6,6 +6,7 @@ Programme démarré le 07/06/17  par Gabriel LEBIS
 #include <stdlib.h>
 #include <string.h>
 #include <SDL/SDL.h>
+#include <time.h>
 #define X_grid 10
 #define Y_grid 10
 #define LMAX 100
@@ -14,22 +15,25 @@ Programme démarré le 07/06/17  par Gabriel LEBIS
 #define FLOOR_SIZE 16
 #define BOT_WIDTH 19
 #define BOT_HEIGHT 22
-#define DELAY 75
+#define DELAY 30
+#define RANDOM_START 500
+#define MAX_RAND 2
 
 typedef struct{
-  int xpos, ypos, steps;
+  int xpos, ypos, steps, oldx, oldy;
   char orient;
 }Robot;
 
 typedef struct{
+  char enabled;
   SDL_Surface* screen, *floorTile, *wall, *exit, *botSprites, *fond;
 }Graph;
 
 
 char **fileOpen(char *chemin, int *xgrid, int *ygrid);
 void displayGrid(char **grid, const int xgrid, const int ygrid);
-char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped, const char graphMode);
-char step(char **grid, Robot *bot, Graph *surfaces);
+char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped);
+char step(char **grid, Robot *bot);
 Robot* startBot(char **gridconst, const int xgrid, const int ygrid);
 char check(char **grid, Robot *bot);
 void botRotate(Robot *bot, char rotation);
@@ -46,5 +50,5 @@ void drawBot(SDL_Surface *screen, Robot *bot, SDL_Surface *botSurf);
 void drawExit(SDL_Surface *exit, SDL_Surface *screen, char **grid, const int xgrid, const int ygrid);
 void reDrawAround(Graph *surfaces, Robot *bot, char **grid);
 void reDraw(Graph *surfaces, char **grid, int x, int y);
-void drawMove(const char graphMode, Graph *surfaces, Robot *bot, char **grid, const int xgrid, const int ygrid, int counter, int steps);
-char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const int ygrid, char graphMode);
+void drawMove(Graph *surfaces, Robot *bot, char **grid, const int xgrid, const int ygrid, int counter, int steps);
+char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const int ygrid);
