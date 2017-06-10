@@ -157,7 +157,6 @@ char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, cons
   char firstStepped = 0;
   char over = 0;
   char won=0;
-  char once=1;
   SDL_Event event;
   while (!over) {
     while ( SDL_PollEvent ( &event ) ) { // tant qu'il y a un évènement
@@ -170,15 +169,10 @@ char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, cons
     //printf("won = %d\n", won);
     if(!won) {
       won = moveRobot(grid, bot, surfaces, xgrid, ygrid, &counter, &firstStepped);
-    }else if(once){
-      step(grid, bot);
-      drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
-      if(surfaces){
+    }else if(surfaces){
         drawWon(surfaces->exit, surfaces->won, surfaces->screen);
-      }else{
-        over=1;
-      }
-      once = 0;
+    }else{
+      over=1;
     }
   }
   SDL_Quit();

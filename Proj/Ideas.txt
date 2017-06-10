@@ -1,0 +1,3 @@
+->compteur de pas "en direct" en haut /en bas
+->menu principal ->choix de niveau ?
+		 ->Lancement de niveau les uns après les autres

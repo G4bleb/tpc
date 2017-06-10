@@ -136,7 +136,7 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const i
 }
 
 char checkWin(char **grid, Robot *bot){
-  if (grid[bot->xpos][bot->ypos+1] == 'S' || grid[bot->xpos][bot->ypos-1] == 'S' || grid[bot->xpos+1][bot->ypos+1] == 'S' || grid[bot->xpos-1][bot->ypos+1] == 'S') {
+  if (grid[bot->xpos][bot->ypos+1] == 'S' || grid[bot->xpos][bot->ypos-1] == 'S' || grid[bot->xpos+1][bot->ypos] == 'S' || grid[bot->xpos-1][bot->ypos] == 'S') {
     return 1;
   }
   return 0;
