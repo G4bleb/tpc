@@ -11,7 +11,6 @@ int main(int argc, char *argv[]){
     printf("Erreur de traitement du fichier\n");
     return -1;
   }
-  srand((unsigned int)time(NULL)); //Graine de tirage aléatoire
   printf("Creating bot\n");
   Robot *bot = startBot(grid, xgrid, ygrid); //Initialisation du robot
   printf("bot->xpos = %d, bot->ypos = %d\n", bot->xpos, bot->ypos);

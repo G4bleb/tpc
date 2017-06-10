@@ -6,7 +6,6 @@ Programme démarré le 07/06/17  par Gabriel LEBIS
 #include <stdlib.h>
 #include <string.h>
 #include <SDL/SDL.h>
-#include <time.h>
 #define X_grid 10
 #define Y_grid 10
 #define LMAX 100
@@ -16,12 +15,12 @@ Programme démarré le 07/06/17  par Gabriel LEBIS
 #define BOT_WIDTH 19
 #define BOT_HEIGHT 22
 #define DELAY 30
-#define RANDOM_START 500
-#define MAX_RAND 2
 
 typedef struct{
   int xpos, ypos, steps, oldx, oldy;
   char orient;
+  char **mat;
+  int xmat, ymat;
 }Robot;
 
 typedef struct{
@@ -38,6 +37,9 @@ char step(char **grid, Robot *bot);
 Robot* startBot(char **gridconst, const int xgrid, const int ygrid);
 char check(char **grid, Robot *bot);
 void botRotate(Robot *bot, char rotation);
+void resizeMatrix(Robot *bot, const int newxmat, const int newymat);
+void markInMatrix(Robot *bot);
+void displayMatrix(Robot *bot);
 char checkWin(char **grid, Robot *bot);
 
 Graph *initGraphics(char * bgFilename, char *wallFilename, char *botFilename, char *exitFilename,char *wonFilename, char **grid, const int xgrid, const int ygrid);
