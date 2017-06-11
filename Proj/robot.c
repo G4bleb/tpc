@@ -106,8 +106,8 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const i
   int counter = *count;
   char won = checkWin(grid, bot);
   char tempCheck;
-  if (bot->xpos+2 > bot->xmat) resizeMatrix(bot, bot->xpos+2, bot->xpos+2);
-  if (bot->ypos+2 > bot->ymat) resizeMatrix(bot, bot->ypos+2, bot->ypos+2);
+  if (bot->xpos+2 > bot->xmat) resizeMatrix(bot, bot->xpos+2, bot->ymat);
+  if (bot->ypos+2 > bot->ymat) resizeMatrix(bot, bot->xmat, bot->ypos+2);
 
   if(counter && !won && (*firstStepped)) {
     botRotate(bot, 'l'); //Mur à gauche ?
@@ -159,19 +159,16 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const i
 }
 
 void resizeMatrix(Robot *bot, const int newxmat, const int newymat){
-  bot->mat = realloc(bot->mat,(size_t)(newxmat)*sizeof(char*));
+  bot->mat = realloc(bot->mat,(size_t)(newxmat)*sizeof(char*)); //agrandir le x
   for (int x = 0; x < bot->xmat; x++) {
     bot->mat[x] = realloc(bot->mat[x],(size_t)(newymat)*sizeof(char));
   }
   for (int x = bot->xmat; x < newxmat; x++) {
-    bot->mat[x] = calloc((size_t)(newymat),sizeof(char));
+    bot->mat[x] = calloc((size_t)(newymat),sizeof(char)); //agrandir le y
   }
-  //printf("xmat = %d, newxmat = %d\n", bot->xmat, newxmat);
-  //printf("ymat = %d, newymat = %d\n", bot->ymat, newymat);
   for (int y = bot->ymat; y < newymat; y++) {
     for (int x = 0; x < newxmat; x++) {
       bot->mat[x][y]=0;
-      //printf("bot->mat[%d][%d]=0;\n",x,y);
     }
   }
   bot->xmat = newxmat;
