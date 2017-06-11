@@ -103,10 +103,8 @@ void drawBot(SDL_Surface *screen, Robot *bot, SDL_Surface *botSprites){
   SDL_Rect rect_dest; // Rectangle destination
   rect_src.x =(Sint16)((bot->orient-1)*BOT_WIDTH);
   rect_src.y =0;
-  //printf("%d\n", rect_src.x);
   rect_src.w = BOT_WIDTH;
   rect_src.h = BOT_HEIGHT;
-  //printf("%d\n", rect_src.w);
   rect_dest.x = (Sint16)(bot->xpos*WALL_SIZE);
   rect_dest.y = (Sint16)((bot->ypos*WALL_SIZE)-FLOOR_SIZE/2);
   SDL_BlitSurface(botSprites, &rect_src, screen, &rect_dest);
@@ -154,9 +152,8 @@ void drawMove(Graph *surfaces, Robot *bot, char **grid, const int xgrid, const i
 
 char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const int ygrid){
   int counter = 0;
-  char firstStepped = 0;
   char over = 0;
-  char won=0;
+  char won = 0;
   SDL_Event event;
   while (!over) {
     while ( SDL_PollEvent ( &event ) ) { // tant qu'il y a un évènement
@@ -168,7 +165,7 @@ char graphicLoop(char **grid, Robot *bot, Graph *surfaces, const int xgrid, cons
     }
     //printf("won = %d\n", won);
     if(!won) {
-      won = moveRobot(grid, bot, surfaces, xgrid, ygrid, &counter, &firstStepped);
+      won = moveRobot(grid, bot, surfaces, xgrid, ygrid, &counter);
     }else if(surfaces){
         drawWon(surfaces->exit, surfaces->won, surfaces->screen);
     }else{

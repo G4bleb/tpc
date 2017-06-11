@@ -1,14 +1,11 @@
 /*
 
-Programme démarré le 07/06/17  par Gabriel LEBIS
+Programme produit le 11/06/17  par Gabriel LEBIS
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <SDL/SDL.h>
-#define X_grid 10
-#define Y_grid 10
-#define LMAX 100
 #define BOT_START 1
 #define WALL_SIZE 16
 #define FLOOR_SIZE 16
@@ -32,7 +29,7 @@ typedef struct{
 char **fileOpen(char *chemin, int *xgrid, int *ygrid);
 void displayGrid(char **grid, const int xgrid, const int ygrid);
 
-char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped);
+char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count);
 char step(char **grid, Robot *bot);
 Robot* startBot(char **gridconst, const int xgrid, const int ygrid);
 char check(char **grid, Robot *bot);
