@@ -27,6 +27,10 @@ int main(int argc, char *argv[]){
     free(grid[x]);
   }
   free(grid);
+  for (int x = 0; x < bot->xmat; x++) {
+    free(bot->mat[x]);
+  }
+  free(bot->mat);
   free(bot);
   return 0;
 }

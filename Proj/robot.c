@@ -105,17 +105,29 @@ void botRotate(Robot *bot, char rotation){
 char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const int ygrid, int *count, char *firstStepped){
   int counter = *count;
   char won = checkWin(grid, bot);
+  char tempCheck;
   if (bot->xpos+2 > bot->xmat) resizeMatrix(bot, bot->xpos+2, bot->xpos+2);
   if (bot->ypos+2 > bot->ymat) resizeMatrix(bot, bot->ypos+2, bot->ypos+2);
 
-  if(!won && (*firstStepped)) {
+  if(counter && !won && (*firstStepped)) {
     botRotate(bot, 'l'); //Mur à gauche ?
     if (!check(grid, bot)){ //Mur à gauche ?
-      //markInMatrix(bot);
+      markInMatrix(bot);
       botRotate(bot, 'r');
       if(!step(grid, bot)){// Peut avancer, mur à gauche : Avancer
-        //markInMatrix(bot);
-        //bot->mat[bot->xpos][bot->ypos] = 1;
+        markInMatrix(bot);
+
+        botRotate(bot, 'r');
+        step(grid, bot);
+        botRotate(bot, 'r');
+        tempCheck=check(grid, bot);
+        botRotate(bot, 'r');
+        step(grid, bot);
+        botRotate(bot, 'r');
+        if (tempCheck) {
+          bot->mat[bot->xpos][bot->ypos] = 1;
+        }
+
         botRotate(bot, 'r');//Peut pas go, mur à gauche
         counter--;
         step(grid, bot);
@@ -126,20 +138,20 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const i
     }
     printf("Did 2ndStep\n");
     drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
-    displayMatrix(bot);
   }
   if ((!counter || !(*firstStepped)) && !won) {
     if(!step(grid, bot)){//Un pas en avant si possible, sinon,
-      //markInMatrix(bot);
+      markInMatrix(bot);
       botRotate(bot, 'r');
       counter--;
       *firstStepped=1;
-      printf("Did 1stStep\n");
+      printf("Finished 1stStep\n");
     }
     drawMove(surfaces, bot, grid, xgrid, ygrid, counter, bot->steps);
-    displayMatrix(bot);
   }
   *count = counter;
+  displayMatrix(bot);
+  //getchar();
   //printf("bot->mat[bot->xpos][bot->ypos] est %d\n", bot->mat[bot->xpos][bot->ypos]);
   //fflush(stdout);
   //printf("counter = %d\n", counter);
@@ -148,21 +160,18 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces,const int xgrid, const i
 
 void resizeMatrix(Robot *bot, const int newxmat, const int newymat){
   bot->mat = realloc(bot->mat,(size_t)(newxmat)*sizeof(char*));
-  for (int x = bot->xmat; x < newxmat; x++) {
-    bot->mat[x]=NULL;
-  }
   for (int x = 0; x < bot->xmat; x++) {
     bot->mat[x] = realloc(bot->mat[x],(size_t)(newymat)*sizeof(char));
   }
   for (int x = bot->xmat; x < newxmat; x++) {
     bot->mat[x] = calloc((size_t)(newymat),sizeof(char));
   }
-  printf("xmat = %d, newxmat = %d\n", bot->xmat, newxmat);
-  printf("ymat = %d, newymat = %d\n", bot->ymat, newymat);
+  //printf("xmat = %d, newxmat = %d\n", bot->xmat, newxmat);
+  //printf("ymat = %d, newymat = %d\n", bot->ymat, newymat);
   for (int y = bot->ymat; y < newymat; y++) {
-    for (int x = bot->xmat; x < newxmat; x++) {
+    for (int x = 0; x < newxmat; x++) {
       bot->mat[x][y]=0;
-      printf("bot->mat[%d][%d]=0;\n",x,y);
+      //printf("bot->mat[%d][%d]=0;\n",x,y);
     }
   }
   bot->xmat = newxmat;
@@ -202,5 +211,5 @@ void displayMatrix(Robot *bot){
     }
     printf("\n");
   }
-  getchar();
+  //getchar();
 }
