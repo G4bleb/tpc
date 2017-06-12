@@ -10,8 +10,8 @@
 char **fileOpen(char *chemin, int *xgrid, int *ygrid){
   FILE *fp = NULL;
   if (!(fp = fopen(chemin, "r"))){
-    printf("Erreur d'ouverture du fichier\n");
-    return NULL; //échec de l'éxécution
+    printf("Erreur d'ouverture du fichier : chemin invalide\n");
+    exit(EXIT_FAILURE); //échec de l'ouverture : quitter le programme prématurément
   }
   int coordx, coordy;
 

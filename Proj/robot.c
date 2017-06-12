@@ -31,6 +31,8 @@ Robot* startBot(char **grid, const int xgrid, const int ygrid){
   if (!botPlaced) { //Le robot n'a pas été correctement placé
     return NULL;
   }
+  bot->oldx = bot->xpos; //Initialisation des coordonnées du robot
+  bot->oldy = bot->ypos; //Initialisation des coordonnées du robot
   grid[bot->xpos][bot->ypos]='&';//Placement du robot sur la matrice labyrinthe
   return bot;
 }
