@@ -21,13 +21,11 @@ int main(int argc, char *argv[]){
     printf("Erreur de traitement du fichier\n");
     return EXIT_FAILURE;
   }
-  printf("Creating bot\n");
   Robot *bot = NULL;
   if (!(bot = startBot(grid, xgrid, ygrid))){ //Initialisation du robot
     printf("Erreur de placement du Robot\n");
     return EXIT_FAILURE;
   };
-  printf("bot->xpos = %d, bot->ypos = %d\n", bot->xpos, bot->ypos);
   Graph * surfaces = NULL; //Contient la plupart des surfaces
   if((char)atoi(argv[2]))surfaces = initGraphics("floorTile.bmp","wall.bmp", "bot.bmp", "exit.bmp", "won.bmp", grid, xgrid, ygrid); //Initialisation des surfaces si les graphismes sont demandés en SDL
   char won = graphicLoop(grid, bot, surfaces, xgrid, ygrid);//La boucle d'attente retourne won=1 si le robot est sorti

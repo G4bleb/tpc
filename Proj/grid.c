@@ -17,7 +17,6 @@ char **fileOpen(char *chemin, int *xgrid, int *ygrid){
 
   fscanf(fp, "%d:%d ", &coordx, &coordy); //découpage de la première ligne du fichier texte, récupération des coordonnées
   //printf("Taille matrice : %d:%d\n", coordx, coordy); //DEBUG
-
   char **grid = malloc((size_t)(coordx)*sizeof(char*)); //Allocation des pointeurs de colonnes
   for (int x = 0; x < coordx; x++) {
     grid[x] = malloc((size_t)(coordy)*sizeof(char)); //Allocation du contenu des colonnes

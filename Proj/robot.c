@@ -295,4 +295,5 @@ void displayMatrix(Robot *bot){
     }
     printf("\n");//Ligne terminée : retour à la ligne
   }
+  printf("\n");
 }

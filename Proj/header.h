@@ -1,6 +1,6 @@
 /*==============================================================================
-Projet d'algorithmie : Un labyrinthe est donné sous forme de fichier texte,
-Un 'D' symbolise le départ, un 'S' la sortie.
+Projet d'algorithmique : Un labyrinthe est donné sous forme de fichier texte,
+Un 'x' symbolise un mur, 'D' symbolise le départ, un 'S' la sortie.
 Sur la première ligne, sont notées les dimensions x et y du labyrinthe, sous la forme : "coordx:coordy"
 Programmer un robot qui, en partant du départ, sans connaissance du labyrinthe, trouve la sortie.
 Il a pour capacités : -Faire un pas en avant
@@ -11,15 +11,14 @@ Il a pour capacités : -Faire un pas en avant
 ================Programme produit le 11/06/17 par Gabriel LEBIS===============*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_mixer.h>
-#define BOT_START 1
-#define WALL_SIZE 16
-#define FLOOR_SIZE 16
-#define BOT_WIDTH 19
-#define BOT_HEIGHT 22
-#define DELAY 30
+#define BOT_START 1 //orientation du départ du robot arbitraire : ici, nord
+#define WALL_SIZE 16 //Taille en pixels d'un sprite carré de mur
+#define FLOOR_SIZE 16 //Taille en pixels d'un sprite carré de sol
+#define BOT_WIDTH 19 //Largeur en pixels d'un sprite de robot
+#define BOT_HEIGHT 22 //Hauteur en pixels d'un sprite de robot
+#define DELAY 30 //Délai en ms
 
 typedef struct{
   int xpos, ypos, steps, oldx, oldy;
