@@ -13,7 +13,7 @@
 Robot* startBot(char **grid, const int xgrid, const int ygrid){
   Robot *bot = malloc(sizeof(Robot)); //Allocation de la zone mémoire utilisée par le robot
   bot->orient = BOT_START; //Le robot est orienté arbitrairement au départ
-  bot->steps = 0; //Le Robot n'a fait aucun pas
+  bot->steps = 0; //Le robot n'a fait aucun pas
   bot->mat = NULL; //Sa matrice n'est pas encore initialisée
   bot->xmat = 0; //Sa matrice a des dimensions nulles
   bot->ymat = 0; //Sa matrice a des dimensions nulles
