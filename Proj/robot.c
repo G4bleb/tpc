@@ -171,7 +171,7 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const 
       botRotate(bot, 'r'); //Se remettre en position initiale
       if(!step(grid, bot)){ //Si on peut avancer, et qu'il y a un mur à gauche : Avancer. Sinon :
         markInMatrix(bot);//Marquer le mur que l'on vient de rencontrer dans la matrice
-        /*Etape : verification de la validité de la configuration des murs*/
+        /*Etape : vérification de la validité de la configuration des murs*/
         botRotate(bot, 'l');//Se retourner
         botRotate(bot, 'l');//Se retourner
         step(grid, bot);//Faire un pas
@@ -179,7 +179,7 @@ char moveRobot(char **grid, Robot *bot, Graph *surfaces, const int xgrid, const 
         tempCheck=check(grid, bot);//Pas de mur : tempCheck = 1
         botRotate(bot, 'l');
         step(grid, bot);//Revenir en place
-        /*Etape : fin de laverification de la validité de la configuration des murs*/
+        /*Etape : fin de la vérification de la validité de la configuration des murs*/
         if (tempCheck) { //Si la configuration est valide
           bot->mat[bot->xpos][bot->ypos] = 1; //Marquer la position du robot : on n'y reviendra plus
         }
